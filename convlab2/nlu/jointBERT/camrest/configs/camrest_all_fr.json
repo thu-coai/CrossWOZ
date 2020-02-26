@@ -1,0 +1,25 @@
+{
+  "data_dir": "camrest/data/all_data",
+  "output_dir": "camrest/output/all",
+  "zipped_model_path": "camrest/output/all/bert_camrest_all.zip",
+  "log_dir": "camrest/log/all",
+  "DEVICE": "cuda:3",
+  "seed": 2019,
+  "cut_sen_len": 40,
+  "use_bert_tokenizer": true,
+  "model": {
+    "finetune": false,
+    "context": false,
+    "context_grad": false,
+    "pretrained_weights": "bert-base-uncased",
+    "check_step": 1000,
+    "max_step": 10000,
+    "batch_size": 100,
+    "learning_rate": 1e-3,
+    "adam_epsilon": 1e-8,
+    "warmup_steps": 0,
+    "weight_decay": 0.0,
+    "dropout": 0.1,
+    "hidden_units": 768
+  }
+}

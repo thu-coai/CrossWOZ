@@ -1,0 +1,9 @@
+inform-area-1
+inform-food-1
+inform-pricerange-1
+request-address-?
+request-area-?
+request-food-?
+request-phone-?
+request-postcode-?
+request-pricerange-?

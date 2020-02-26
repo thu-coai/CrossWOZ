@@ -1,0 +1,45 @@
+/*导航*/
+
+.nav{height:80px;float:right ;position:relative}
+.nav .navBgBox{height:80px;overflow:hidden;padding-top:3px}
+.header_bottom{width:286px}
+.nav ul {}
+.nav ul li{float:left;width:96px;line-height:80px;color:#000;overflow:hidden;position:relative;height:80px;}
+.nav ul li #CurrentlyNode{color:#0DA3E2;font-weight:bold;}
+/*.nav ul li.hover a{color:#0DA3E2;font-weight:bold;}
+.nav ul li.hover i{position:absolute;top:0;left:50%;border-color:#0DA3E2 transparent transparent transparent;  border-width: 6px;margin-left:-4px;
+  border-style: solid;}*/
+.nav ul{}
+.nav ul li a{color:#000;}
+.nav ul li a:hover{text-decoration:none;background:}
+/*.nav .mask{position:absolute;left:75px;top:0px;height: 49px;width:96px;background:url(/res/Home/structure/15070332.png) no-repeat left top;}*/
+.nav .mask{background:#FAFAFA;border-top:solid 3px #0DA3E2;position:absolute;left:0;top:0px;height: 76px;width:96px;}
+.nav ul li.hover a{color:#0DA3E2;font-weight:bold;}
+.nav .mask i{position:absolute;top:0;left:50%;border-color:#0DA3E2 transparent transparent transparent;  border-width: 6px;margin-left:-4px;
+  border-style: solid;}
+
+
+
+
+/* 弹出 */
+/*
+.altul{padding:60px 0 0}
+.altul li{margin:0 0 30px 0;overflow:hidden;}
+.altul li span{float:left;margin:0 0 0 15px;width:56px;height:25px;line-height:25px;background:#F5F5F5;text-align:center}
+*/
+
+/*页脚*/
+/*.footer-top{background:#C9C9C9;height:86px;overflow: hidden;}
+.footer-top-con{width:1000px;margin:0 auto;}
+.object-footer-logo{height:40px;border-right:1px solid #BBBBBB;width:353px;float:left;padding-right:50px;margin-top:20px;text-align:right;box-sizing: border-box;}
+.object-footer-logo img{height:50px;}
+.footer-top-con #CurrentlyText{display: block;float: left;text-align: left;color: #444444;padding-left: 42px;padding-top: 20px;}
+.footer-top-con #CurrentlyText p{margin:0px;margin-bottom:10px;line-height:200%}
+
+.footer-bottom{background:#00366C url(/res/Home/structure/object_footer_bottom.jpg) repeat-y center top;height:140px;color:#FFFFFF;}
+.footer-nav{font-weight:bold;color:#303D5D;padding-bottom:5px;color:#ffffff;}
+.footer-nav a{color:#ffffff;}
+.copyright{position:absolute;top:30px;height:80px;background:url(/res/Home/structure/object_indexfooter_logo.png) no-repeat left 10px;text-align:left;padding-left:100px;line-height:180%;padding-top:10px;left:37px;}
+.motto{position:absolute;top:55px;right:37px;}
+.motto i{font-style:normal;color:#FF9D00;font-weight:bold;}
+.footer-bottom-con{width:1100px;margin:0 auto;position:relative;}*/

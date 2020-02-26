@@ -1,0 +1,139 @@
+{
+  "net": {
+    "port": 8787,
+    "app_name": "tatk",
+    "session_time_out": 300
+  },
+  "nlu": {
+    "svm-cam": {
+      "class_path": "convlab2.nlu.svm.camrest.nlu.SVMNLU",
+      "data_set": "camrest",
+      "ini_params": {
+        "mode": "usr"
+      },
+      "model_name": "svm-cam",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    },
+    "svm-mul": {
+      "class_path": "convlab2.nlu.svm.multiwoz.nlu.SVMNLU",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "mode": "usr"
+      },
+      "model_name": "svm-mul",
+      "max_core": 1,
+      "preload": false,
+      "enable": true
+    },
+    "bert-mul": {
+      "class_path": "convlab2.nlu.jointBERT.multiwoz.nlu.BERTNLU",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "mode": "all",
+        "config_file": "multiwoz_all.json",
+        "model_file": "https://tatk-data.s3-ap-northeast-1.amazonaws.com/bert_multiwoz_all.zip"
+      },
+      "model_name": "bert-mul",
+      "max_core": 1,
+      "preload": false,
+      "enable": true
+    }
+  },
+  "dst": {
+    "rule-cam": {
+      "class_path": "convlab2.dst.rule.camrest.dst.RuleDST",
+      "data_set": "camrest",
+      "ini_params": {},
+      "model_name": "rule-cam",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    },
+    "rule_mul": {
+      "class_path": "convlab2.dst.rule.multiwoz.dst.RuleDST",
+      "data_set": "multiwoz",
+      "ini_params": {},
+      "model_name": "rule-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  },
+  "policy": {
+    "mle-cam": {
+      "class_path": "convlab2.policy.mle.camrest.mle.MLE",
+      "data_set": "camrest",
+      "ini_params": {},
+      "model_name": "mle-cam",
+      "max_core": 1,
+      "preload": false,
+      "enable": true
+    },
+    "mle-mul": {
+      "class_path": "convlab2.policy.mle.multiwoz.mle.MLE",
+      "data_set": "multiwoz",
+      "ini_params": {},
+      "model_name": "mle-mul",
+      "max_core": 1,
+      "preload": false,
+      "enable": true
+    },
+    "rule-cam": {
+      "class_path": "convlab2.policy.rule.camrest.rule_based_camrest_bot.RuleBasedCamrestBot",
+      "data_set": "camrest",
+      "ini_params": {},
+      "model_name": "rule-cam",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    },
+    "rule-mul": {
+      "class_path": "convlab2.policy.rule.multiwoz.rule_based_multiwoz_bot.RuleBasedMultiwozBot",
+      "data_set": "multiwoz",
+      "ini_params": {},
+      "model_name": "rule-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  },
+  "nlg": {
+    "tmp-manual-cam": {
+      "class_path": "convlab2.nlg.template.camrest.nlg.TemplateNLG",
+      "data_set": "camrest",
+      "ini_params": {
+        "is_user": false
+      },
+      "model_name": "tmp-manual-cam",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    },
+    "tmp-auto_manual-cam": {
+      "class_path": "convlab2.nlg.template.camrest.nlg.TemplateNLG",
+      "data_set": "camrest",
+      "ini_params": {
+        "is_user": false,
+        "mode": "auto_manual"
+      },
+      "model_name": "tmp-auto_manual-cam",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    },
+    "tmp-auto_manual-mul": {
+      "class_path": "convlab2.nlg.template.multiwoz.nlg.TemplateNLG",
+      "data_set": "multiwoz",
+      "ini_params": {
+        "is_user": false,
+        "mode": "auto_manual"
+      },
+      "model_name": "tmp-auto_manual-mul",
+      "max_core": 1,
+      "preload": true,
+      "enable": true
+    }
+  }
+}

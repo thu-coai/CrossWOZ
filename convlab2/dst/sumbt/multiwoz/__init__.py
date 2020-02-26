@@ -1,0 +1,1 @@
+from convlab2.dst.sumbt.multiwoz.sumbt import MultiWozSUMBT as SUMBT

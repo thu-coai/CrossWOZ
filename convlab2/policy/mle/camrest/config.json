@@ -1,0 +1,11 @@
+{
+	"batchsz": 32,
+	"epoch": 16,
+	"lr": 0.01,
+	"save_dir": "save",
+	"log_dir": "log",
+	"print_per_batch": 10,
+	"save_per_epoch": 5,
+	"h_dim": 10,
+	"load": "save/best"
+}

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+
+    <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/js/npm.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/vue.min.js" type="text/javascript"></script>
+
+    <style type="text/css">
+
+        .title_div {
+            font-size: 30px;
+            width: 92%;
+            margin-left: 5%;
+            text-align: center;
+
+            font-weight: bold;
+            color: white;
+            background-color: #ff8729;
+        }
+
+        .left {
+            width: 30%;
+            float: left;
+            margin-left: 5%;
+            margin-right: 0;
+            margin-top: 10px;
+        }
+
+        .right {
+            float: left;
+            width: 60%;
+            margin-left: 2%;
+            margin-top: 5px;
+        }
+
+        .item {
+            height: 35px;
+            margin-bottom: 5px;
+        }
+
+        .divide {
+            height: 10px;
+
+            width: 100%;
+        }
+
+        .item_title {
+            float: left;
+            width: 43%;
+            margin-left: 2%;
+            height: 34px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            line-height: 34px
+        }
+
+        .item_select {
+            float: left;
+            width: 40%;
+            margin-left: 5%;
+            height: 25px;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .module_output {
+            height: 105px;;
+            width: 100%;
+        }
+
+        .module_output_area {
+            height: 100px;
+            width: 100%;
+            font-size: 10px;
+            resize: none;
+        }
+
+        .dialog_history {
+            background-color: #e3e3e3;
+            width: 100%;
+            height: 555px;
+            overflow-y: scroll;
+        }
+
+        .text_input {
+            width: 100%;
+            height: 100px;
+            margin-top: 7px;
+        }
+
+        .input_area {
+            width: 100%;
+            font-size: 20px;
+            resize: none;
+        }
+
+        .buttons {
+            float: right;
+            margin-right: 5%;
+            margin-top: 3px;
+        }
+
+        .single_button {
+            width: 90px;
+            font-size: 20px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .line {
+            word-wrap: break-word;
+            overflow: hidden;
+            width: 90%;
+            margin-left: 5%;
+            margin-bottom: 10px;
+        }
+
+        .bubble {
+            background-color: white;
+            border-radius: 5px;
+            max-width: 80%;
+            float: left;
+        }
+
+        .bubble2 {
+            background-color: #9ae766;
+            border-radius: 5px;
+            max-width: 80%;
+            float: right;
+        }
+
+        .bubble_text {
+            font-size: 18px;
+            padding: 3px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .whole_page {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .recall_line {
+            width: 100%;
+            height: 30px;
+        }
+
+        .recall_button {
+            width: 30%;
+            height: 29px;
+            text-align: center;
+            float: right;
+            font-size: 12px;
+        }
+    </style>
+
+    <title>TaTK</title>
+    <div id="whole_page" class="whole_page">
+        <div id="title" class="title_div">Interactive Tool</div>
+        <div class="left">
+            <div class="item">
+                <div class="item_title">Dataset</div>
+                <select v-model="dataset" id="dataet" class="item_select">
+                    <option v-for="item in dataset_list" :value=item>{item}</option>
+                </select>
+            </div>
+            <div class="divide"></div>
+            <div class="item">
+                <div class="item_title">NLU Model</div>
+                <select v-model="nlu" id="nlu" class="item_select">
+                    <option  selected>缺省</option>
+                    <option v-for="item in nlu_list" :value=item>{item}</option>
+                </select>
+            </div>
+            <div class="module_output">
+                {# <textarea :rows={output_rows} class="form-control module_output_area"></textarea>#}
+                <pre @input="input(event)" id="nlu_output" class="form-control module_output_area"
+                     contenteditable="true">{nlu_output}</pre>
+            </div>
+            <div id="nlu_button" class="recall_line" hidden>
+                <button class="btn btn-info recall_button" @click="recall_module(event)">Recall NLU</button>
+            </div>
+
+            <div class="divide"></div>
+            <div class="item">
+                <div class="item_title">DST Model</div>
+                <select v-model="dst" id="dst" class="item_select">
+                    <option  selected>缺省</option>
+                    <option v-for="item in dst_list" :value=item>{item}</option>
+                </select>
+            </div>
+            <div class="module_output">
+                {# <textarea :rows={output_rows} class="form-control module_output_area"
+                             v-model="dst_output"></textarea>#}
+                <pre @input="input(event)" id="dst_output" class="form-control module_output_area"
+                     contenteditable="true">{dst_output}</pre>
+            </div>
+            <div id="dst_button" class="recall_line" hidden>
+                <button class="btn btn-info recall_button" @click="recall_module(event)">Recall DST</button>
+            </div>
+
+            <div class="divide"></div>
+            <div class="item">
+                <div class="item_title">Policy Model</div>
+                <select v-model="policy" id="policy" class="item_select">
+                    <option selected >缺省</option>
+                    <option v-for="item in policy_list" :value=item>{item}</option>
+                </select>
+            </div>
+            <div class="module_output">
+                {# <textarea :rows={output_rows} class="form-control module_output_area"
+                             v-model="policy_output"></textarea>#}
+                <pre @input="input(event)" id="policy_output" class="form-control module_output_area"
+                     contenteditable="true">{policy_output}</pre>
+            </div>
+            <div class="divide"></div>
+            <div id="policy_button" class="recall_line" hidden>
+                <button class="btn btn-info recall_button" @click="recall_module(event)">Recall Policy</button>
+            </div>
+
+            <div class="item">
+                <div class="item_title">NLG Model</div>
+                <select v-model="nlg" id="nlg" class="item_select">
+                    <option disabled selected hidden>请选择</option>
+                    <option v-for="item in nlg_list" :value=item>{item}</option>
+                </select>
+            </div>
+            <div class="module_output">
+                {# <textarea :rows={output_rows} class="form-control module_output_area"
+                             v-model="nlg_output"></textarea>#}
+                <pre @input="input(event)" id="nlg_output" class="form-control module_output_area"
+                     contenteditable="true">{nlg_output}</pre>
+            </div>
+            <div id="nlg_button" class="recall_line" hidden>
+                <button class="btn btn-info recall_button" @click="recall_module(event)">Recall NLG</button>
+            </div>
+        </div>
+        <div class="right">
+            <div class="dialog_history" id="conv_history_div">
+                <div style="height: 20px;"></div>
+                <div class="line" v-for="(line, turn_id) in history">
+                    <div v-if="line[0]=='system'" class="bubble bubble_text">
+                        {line[1]}
+                    </div>
+                    <div v-if="line[0]=='user'" class="bubble2 bubble_text">
+                        {line[1]}
+                    </div>
+                </div>
+            </div>
+            <div class="text_input">
+                <textarea rows="3" id="input_text" class="form-control input_area" v-model="input_text"></textarea>
+            </div>
+            <div class="buttons">
+                {# TODO: sent invalid when recall btn appears#}
+                <!--<button type="button" id="test_btn" class="btn btn-info single_button" @click="">xx</button>-->
+                <button type="button" id="clear_btn" class="btn btn-info single_button" @click="close">clear</button>
+                <button type="button" id="submit_btn" class="btn btn-info single_button" @click="submt()">send</button>
+            </div>
+        </div>
+    </div>
+</head>
+<body>
+</body>
+
+<script type="text/javascript">
+    vm = new Vue({
+        delimiters: ['{', '}'],
+        el: '#whole_page',
+        data: {
+            dataset: 'MultiWoz',
+            dataset_list: ['MultiWoz'],
+            nlu: 'BERTNLU',
+            nlu_list: [],
+            nlu_output: {},
+            dst: 'RuleDST',
+            dst_list: [],
+            dst_output: {},
+            policy: 'RulePolicy',
+            policy_list: [],
+            policy_output: {},
+            nlg: 'TemplateNLG',
+            nlg_list: [],
+            nlg_output: {},
+            history: [
+                // ['user', 'I want to find a moderately priced restaurant .'],
+                // ['system', 'I have many options available for you ! Is there a certain area or cuisine that interests you ?'],
+                // ['user', 'Yes I would like the restaurant to be located in the center of the attractions .'],
+                // ['system', 'There are 21 restaurants available in the centre of town . How about a specific type of cuisine ?'],
+                // ['user', 'i need to know the food type and postcode and it should also have mutliple sports'],
+                // ['system', 'I am sorry I do not understand what you just said . Please repeat in a way that makes sense .'],
+                // ['user', 'get me the food type and the post code'],
+                // ['system', 'My favorite it The Copper Kettle at 4 Kings Parade City Centre CB21SJ .   It serves British food .   Does that interest you ?'],
+                // ['user', 'Absolutely ! Thank you ! I also need information on the attractions that have multiple sports in town , in the same area as the restaurant please .'],
+                // ['system', 'The only multiple sports attraction is located in the east of town . Would you like more information ?'],
+                // ['user', 'No , I want to be in the centre of town . What about architecture attractions ?'],
+                // ['system', 'All Saints Church is an architectural attraction . It is in the Centre of town and entrance is free !'],
+            ],
+
+            input_text: null,
+
+            output_rows: 5,
+            module_dict: {},
+            model_dict: {}
+        },
+        mounted: function () {
+            this.scroll_auto();
+            this.load_ontology();
+            localStorage.clear()
+        },
+        created: function () {
+        },
+        methods: {
+            // recall: function () {
+            //     this.update_vals();
+            //     alert(this.dataset);
+            //     alert('recall');
+            // },
+            submt: function () {
+                // alert('submt')
+                // alert('submt');
+                // this.update_vals();
+                // var b = e.srcElement;
+                // b.setAttribute("disabled", true);
+                var token = localStorage.getItem('tatk_token');
+                {#alert(token);#}
+                if (token === null) {
+                    {#alert('register');#}
+                    this.register();
+                    this.response();
+                } else {
+                    this.response();
+                    this.scroll_auto();
+                }
+                // b.removeAttribute("disabled");
+                // alert('submt done');
+            },
+            scroll_auto: function () {
+                // alert('scroll_auto')
+                var his = document.getElementById('conv_history_div');
+                // alert(his.scrollHeight);
+                his.scrollTop = his.scrollHeight;
+            },
+            update_vals: function () {
+                // alert('update_vals')
+                // alert(document.getElementById("nlu_output").html());
+                // alert(document.getElementById("dst_output").html());
+                // alert(document.getElementById("policy_output").html());
+                // alert(document.getElementById("nlg_output").html());
+                this.nlu_output = JSON.parse(document.getElementById("nlu_output").html());
+                this.dst_output = JSON.parse(document.getElementById("dst_output").html());
+                this.policy_output = JSON.parse(document.getElementById("policy_output").html());
+                this.nlg_output = JSON.parse(document.getElementById("nlg_output").html());
+            },
+            recall_module: function (e) {
+                // alert('recall_module')
+                var target = e.srcElement.parentElement;
+                var m = target.id.substring(0, target.id.length - 7);
+                // alert(m);
+                target.setAttribute("hidden", true);
+            },
+            input: function (e) {
+                // alert('input')
+                this.clear_button();
+                var m = e.srcElement.id.substring(0, e.srcElement.id.length - 7);
+                var button_id = m + '_button';
+                var d = document.getElementById(button_id);
+                d.removeAttribute("hidden");
+            },
+            clear_button: function () {
+                // alert('clear_button')
+                var mlist = ['nlu', 'dst', 'policy', 'nlg'];
+                for (var m in mlist) {
+                    var item = mlist[m];
+                    var id = item + '_button';
+                    var d = document.getElementById(id);
+                    d.setAttribute("hidden", true);
+                }
+            },
+            response: function() {
+                // alert('response')
+                var token = localStorage.getItem('tatk_token');
+                var sent = this.input_text;
+                var self = this;
+                // alert('response start')
+                $.ajax({
+                    type: 'POST',
+                    url: '/tatk/response',
+                    dataType: 'json',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    contentType: 'application/json; charset=utf-8',
+                    async: false,
+                    data: JSON.stringify({
+                        "token": token,
+                        "input_module": "nlu",
+                        "data": sent
+                    }),
+                    success: function (data) {
+                        var status = data.status;
+                        if (status === 'ok') {
+                            // alert('sent');
+                            self.nlu_output = data.nlu === null ? {} : data.nlu;
+                            self.dst_output = data.dst === null ? {} : data.dst;
+                            self.policy_output = data.policy === null ? {} : data.policy;
+                            self.nlg_output = data.nlg === null ? {} : data.nlg;
+                            self.history = data.history === null ? [] : data.history;
+                            self.input_text = '';
+                            for(var i = 0, len = self.history.length; i < len; i++){
+                                var sent = self.history[i][1];
+                                if (sent === "" || sent === null) {
+                                    self.history[i][1] = '[EMPTY]';
+                                }
+                            }
+                        } else {
+                            // alert('response err');
+                            alert(data.error_msg);
+                        }
+                    },
+                    error: function () {
+                        alert("服务器出错了！");
+                    }
+                });
+            },
+            register: function() {
+                // alert('register')
+                var self = this;
+                {#alert(JSON.stringify({#}
+                {#        "nlu": self.nlu === null? null:self.model_dict[self.nlu],#}
+                {#        "policy": self.policy === null? null:self.model_dict[self.policy],#}
+                {#        "dst": self.dst === null? null:self.model_dict[self.dst],#}
+                {#        "nlg": self.nlg === null? null:self.model_dict[self.nlg]#}
+                {#    }))#}
+                return $.ajax({
+                    type: 'POST',
+                    url: '/tatk/register',
+                    dataType: 'json',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    contentType: 'application/json; charset=utf-8',
+                    async: false,
+                    data: JSON.stringify({
+                        "nlu": self.nlu === null? null:self.model_dict[self.nlu],
+                        "policy": self.policy === null? null:self.model_dict[self.policy],
+                        "dst": self.dst === null? null:self.model_dict[self.dst],
+                        "nlg": self.nlg === null? null:self.model_dict[self.nlg]
+                    }),
+                    success: function (data) {
+                        var status = data.status;
+                        if (status === 'ok') {
+                            var token = data.token;
+                            localStorage.setItem('tatk_token', token);
+                            // alert('register ok');
+                        } else {
+                            alert(data.error_msg);
+                            {#alert('register failed');#}
+                        }
+                    },
+                    error: function () {
+                        alert("服务器出错了！");
+                    }
+                });
+            },
+            close: function() {
+                // alert('close')
+                var self = this;
+                var token = localStorage.getItem('tatk_token');
+                if (token === null) {
+                    // alert(1);
+                    var self = this;
+                    ajax1 = this.clear_all();
+                    $.when(ajax1).done(function() {
+                        // alert(3);
+                        self.load_ontology();
+                    });
+                    alert('对话结束!')
+                } else {
+                    // alert(2)
+                    $.ajax({
+                        type: 'POST',
+                        url: '/tatk/close',
+                        dataType: 'json',
+                        headers: {
+                            "Content-Type": "application/json;charset=utf-8"
+                        },
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify({
+                            "token": token
+                        }),
+                        success: function (data) {
+                            var status = data.status;
+                            if (status === 'ok') {
+                                ajax1 = self.clear_all();
+                                $.when(ajax1).done(function() {
+                                    self.load_ontology();
+                                });
+                                alert('对话结束!')
+                            } else {
+                                alert(data.error_msg);
+                            }
+                        },
+                        error: function () {
+                            alert("服务器出错了！");
+                        }
+                    });
+                }
+
+            },
+            load_ontology: function () {
+                // alert('load_ontology')
+                var self = this;
+                $.ajax({
+                    type: 'POST',
+                    url: '/tatk/models',
+                    dataType: 'json',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8"
+                    },
+                    contentType: 'application/json; charset=utf-8',
+                    async: false,
+                    data: JSON.stringify({}),
+                    success: function (data) {
+                        this.module_dict = {};
+                        this.model_dict = {};
+                        var status = data.status;
+                        if (status === 'ok') {
+                            for (var module in data) {
+                                if (module === 'status') {
+                                    continue
+                                }
+                                for (var model in data[module]) {
+                                    var model_name = data[module][model]['model_name'];
+                                    if (self.module_dict.hasOwnProperty(module)) {
+                                        self.module_dict[module].push(model_name)
+                                    } else {
+                                        self.module_dict[module] = [model_name]
+                                    }
+                                    self.model_dict[model_name] = model;
+                                }
+                            }
+                            self.nlu_list = self.module_dict.nlu;
+                            self.dst_list = self.module_dict.dst;
+                            self.policy_list = self.module_dict.policy;
+                            self.nlg_list = self.module_dict.nlg;
+                            localStorage.setItem("ontology", true);
+                        } else {
+                            alert(data.error_msg);
+                        }
+                    },
+                    error: function () {
+                        alert("服务器出错了！");
+                    }
+                });
+            },
+            clear_all: function () {
+                // alert('clear_all')
+                // this.dataset = null;
+                // this.dataset_list = [];
+                this.nlu = null;
+                this.nlu_list = [];
+                this.nlu_output = {};
+                this.dst = null;
+                this.dst_list = [];
+                this.dst_output = {};
+                this.policy = null;
+                this.policy_list = [];
+                this.policy_output = {};
+                this.nlg = null;
+                this.nlg_list = [];
+                this.nlg_output = {};
+                this.history = [];
+                this.module_dict = {};
+                this.model_dict = {};
+                localStorage.clear();
+            }
+        }
+    });
+
+</script>
+
+</html>

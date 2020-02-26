@@ -1,0 +1,835 @@
+{
+    "Attraction-Inform": {
+        "none": [
+            "I am planning a trip to town and want to sight see a bit . Can you let me know some attractions I may be interested in ?",
+            "Hi , I am planning a trip and need some help with a particular attraction .",
+            "Yeah , I ' m looking for an entertaining tourist attraction , can point me in the direction of some places to check out ?",
+            "Something fun . It needs to be an attraction . Can you make a suggestion ?",
+            "I ca n't wait to get there and see some of the local attractions . I am looking for a place to stay . Can you help me ?",
+            "I am looking for tourist attractions .",
+            "I am looking for a particular attraction .",
+            "Can you help me plan a trip to see a particular attraction ?",
+            "I am coming to Cambridge soon to see the many local attractions ."
+        ],
+        "Area": [
+            "I 'd like something in the #ATTRACTION-INFORM-AREA# .",
+            "I would like to visit on in town #ATTRACTION-INFORM-AREA# please .",
+            "Are there anything fun to do in city #ATTRACTION-INFORM-AREA# ?",
+            "I ' m looking for some attractions in the #ATTRACTION-INFORM-AREA# .",
+            "I am also looking for suggestions on places to go in the #ATTRACTION-INFORM-AREA# of town . Can you help me with that ?",
+            "I 'd like a sports place in the #ATTRACTION-INFORM-AREA# please .",
+            "I am also looking for places to go in town . Maybe something in the #ATTRACTION-INFORM-AREA# .",
+            "I also need a place to go in the #ATTRACTION-INFORM-AREA# .",
+            "Can you recommend some fun entertainment in the #ATTRACTION-INFORM-AREA# ?"
+        ],
+        "Type": [
+            "I was hoping to see local places while in cambridge . Some #ATTRACTION-INFORM-TYPE# would be great .",
+            "I ' m looking for a #ATTRACTION-INFORM-TYPE# type attraction .",
+            "A #ATTRACTION-INFORM-TYPE# type of attraction .",
+            "Do you have any #ATTRACTION-INFORM-TYPE# attractions",
+            "Okay , are there any #ATTRACTION-INFORM-TYPE#s in the centre ?",
+            "How about a #ATTRACTION-INFORM-TYPE# ?",
+            "I was also wondering if you would be able to help me find a place to go to see some great #ATTRACTION-INFORM-TYPE# .",
+            "I prefer something related to #ATTRACTION-INFORM-TYPE#",
+            "I am looking for a #ATTRACTION-INFORM-TYPE# to visit ."
+        ],
+        "Name": [
+            "Yes , I ' m also looking for info on #ATTRACTION-INFORM-NAME# .",
+            "Can you help me find information on #ATTRACTION-INFORM-NAME# ?",
+            "Hello , I ' m looking for the #ATTRACTION-INFORM-NAME# , could you tell me more about it ?",
+            "I am also looking for a attraction called #ATTRACTION-INFORM-NAME# .",
+            "I ' m looking for #ATTRACTION-INFORM-NAME# .",
+            "I am interested in seeing the #ATTRACTION-INFORM-NAME# in Cambridge . Where is it located ?",
+            "do you know where #ATTRACTION-INFORM-NAME# is",
+            "All set on that for now , but i do need info on a place called the #ATTRACTION-INFORM-NAME#",
+            "Yeah , I would like to know about an attraction called #ATTRACTION-INFORM-NAME# .",
+            "I ca n't seem to find any information about the #ATTRACTION-INFORM-NAME# , please help ."
+        ]
+    },
+    "Attraction-Request": {
+        "Addr": [
+            "Could I get the address for it ?",
+            "Can I have the address of a good one ?",
+            "Can I get the address ?",
+            "Just the address please",
+            "That sounds great ! May I have the address ?",
+            "Is there an exact address , like a street number ? Thanks !",
+            "What is the address ?",
+            "Can I get the address please ?",
+            "Can I get the precise address please ?"
+        ],
+        "Post": [
+            "Oh , and what is their postcode , please ?",
+            "what is their postcode ?",
+            "Can I please have the postcode ?",
+            "Thank you very much . Can you give me the postcode ?",
+            "Can you tell me their postcode ?",
+            "Yes , that will work great . Can I get their postcode please ?",
+            "What is the postcode for this place ?",
+            "Can you let me have their postcode ?",
+            "I 'll need the postcode ."
+        ],
+        "Phone": [
+            "can I get the phone number of one ?",
+            "Yes can I get the phone number of one you 'd recommend ?",
+            "Can you give me their phone number please ?",
+            "What is the phone number ?",
+            "I need the phone number as well .",
+            "Please get me their phone number",
+            "Sounds good . Could I get the phone number ?",
+            "Can you give me the phone number ?",
+            "I 'd like their phone number if you have it available , please ."
+        ],
+        "Fee": [
+            "I just need to know how much the entrance fee is .",
+            "Is there an entrance fee ?",
+            "Does it have an entrance fee ?",
+            "Can you let me know what the entrance fee is too ?",
+            "can you recommend one and give me the entrance fee ?",
+            "Can you just recommend one and tell me the entrance fee ?",
+            "Yes , what are the entrance fees ?",
+            "Certainly , pick out a good option . I will need the entrance fee please .",
+            "I would like to know the entrance fee ."
+        ],
+        "Area": [
+            "Can you tell me what area it is located in ?",
+            "Thank you . What 's the area ?",
+            "What area is it located ?",
+            "What area of town is that in ?",
+            "Just need to know what area it 's in .",
+            "What area of town is that in ?",
+            "And what area are they in ?"
+        ],
+        "Type": [
+            "Yes , what is the attraction type ?",
+            "yes I 'll need the attraction type please .",
+            "What type of attraction is this ?",
+            "Can you tell me what type of attraction that is considered ?",
+            "Thank you . What type of attraction is this ?",
+            "What type of attraction is that college ?"
+        ]
+    },
+    "Hospital-Inform": {
+        "none": [
+            "I ' ve been injured and need to find a hospital nearby .",
+            "Can you tell me how to get to Hospital ?",
+            "Am looking for the Hospital",
+            "Could you find me a hospital in town ?",
+            "I need to know where the Hospital is please .",
+            "I want a hospital in town .",
+            "I seem to have injured myself and need a nearby hospital .",
+            "i want to find a hospital in town",
+            "Would you happen to have info on the Hospital ?",
+            "Hey , I ' ve been injured . Where 's the closest hospital ?"
+        ],
+        "Department": [
+            "I am looking in town for a hospital with a #HOSPITAL-INFORM-DEPARTMENT#",
+            "Where 's the closest hospital with a #HOSPITAL-INFORM-DEPARTMENT# ?",
+            "I ' m looking for the Hospital with a #HOSPITAL-INFORM-DEPARTMENT# .",
+            "I got injured and I am looking for a hospital nearby . the hospital should have the #HOSPITAL-INFORM-DEPARTMENT# department",
+            "Am injured and are looking for a hospital nearby it should have the #HOSPITAL-INFORM-DEPARTMENT# neurosurgery department",
+            "I am in need of a local hospital please . And it must have a #HOSPITAL-INFORM-DEPARTMENT# department !",
+            "I am looking for the Hospital . the hospital should have the #HOSPITAL-INFORM-DEPARTMENT# department",
+            "i need a hospital with a #HOSPITAL-INFORM-DEPARTMENT# department",
+            "I need to find a hospital in town with a #HOSPITAL-INFORM-DEPARTMENT# .",
+            "Am injured and are looking for a hospital nearby it should have the #HOSPITAL-INFORM-DEPARTMENT# department ."
+        ]
+    },
+    "Hospital-Request": {
+        "Phone": [
+            "I just need the general phone number , please .",
+            "Can you provide the phone number for me ?",
+            "No but I need the phone number",
+            "What is the phone number ?",
+            "Could you send their phone number please ?",
+            "May I also have the phone number please ?",
+            "I am looking for the Hospital , can you please give me their phone number ?",
+            "I do not know it . Can I have the hospitals phone number ?",
+            "I need their phone number , please ."
+        ],
+        "Post": [
+            "Can I get the postcode as well ?",
+            "but do you have the postal code by any chance ?",
+            "Thanks , can I also get the postcode ?",
+            "I just need the postcode , please .",
+            "Thank you . Can I have the postcode ?",
+            "What is the postcode ?",
+            "I need the postcode , thanks .",
+            "Could you also give me the postcode ?",
+            "can you also give me their postcode ?"
+        ],
+        "Addr": [
+            "Can I also get the address ? Thanks !",
+            "Does the address not have a street number ?",
+            "Can I get the address please ?",
+            "What is the address so I can find the hospital ?",
+            "What is their address ?",
+            "Thanks . Can I get an address as well ?",
+            "Can I please have the full address of the hospital ?",
+            "may I please have the address ?",
+            "What is the exact address ?",
+            "Thank you . Could you please get me the address for the hospital ?"
+        ]
+    },
+    "Hotel-Inform": {
+        "Parking": [
+            "oh , i need parking",
+            "I do n't want to have to pay for parking .",
+            "It must have free parking .",
+            "Hello , I ' m looking for a place to stay that offers free parking .",
+            "Hello , I would like to find a hotel that includes free parking .",
+            "I ' m looking for a place to stay . I need a hotel that includes free parking",
+            "I 'd like to book one that offers parking please ."
+        ],
+        "Stay": [
+            "how about only #HOTEL-INFORM-STAY# nights .",
+            "Let 's try #HOTEL-INFORM-STAY# nights . ",
+            "what about #HOTEL-INFORM-STAY# nights ?",
+            "we 'd like to stay for #HOTEL-INFORM-STAY# nights .",
+            "I would like to book it for #HOTEL-INFORM-STAY# nights please .",
+            "Can you try booking again for #HOTEL-INFORM-STAY# nights ?",
+            "I will need #HOTEL-INFORM-STAY# nights please .",
+            "How about #HOTEL-INFORM-STAY# night ? Would that work ?"
+        ],
+        "Type": [
+            "I 'd really prefer a #HOTEL-INFORM-TYPE# .",
+            "I actually am looking for a #HOTEL-INFORM-TYPE# .",
+            "could you help me with a finding a #HOTEL-INFORM-TYPE# ?",
+            "do you have one that is a #HOTEL-INFORM-TYPE# ?",
+            "I would like a #HOTEL-INFORM-TYPE# please .",
+            "It should be a #HOTEL-INFORM-TYPE# type hotel ",
+            "I ' m looking for a #HOTEL-INFORM-TYPE# type place to stay ."
+        ],
+        "Price": [
+            "I would like to keep it in the #HOTEL-INFORM-PRICE# range , please .",
+            "Could you also find me a hotel with a #HOTEL-INFORM-PRICE# price ?",
+            "I would prefer something that is in the #HOTEL-INFORM-PRICE# price range .",
+            "How about a hotel in the #HOTEL-INFORM-PRICE# price range ?",
+            "it needs to be in the #HOTEL-INFORM-PRICE# price range .",
+            "I ' m looking for some #HOTEL-INFORM-PRICE# priced accommodations for my visit . Can you help me with that ?",
+            "I would like to keep the price #HOTEL-INFORM-PRICE# .",
+            "I also need a #HOTEL-INFORM-PRICE# place to stay ."
+        ],
+        "Day": [
+            "#HOTEL-INFORM-DAY# please .",
+            "i want to check in on #HOTEL-INFORM-DAY#",
+            "Try #HOTEL-INFORM-DAY# please .",
+            "Great , can you book that for first day #HOTEL-INFORM-DAY# please ?",
+            "On #HOTEL-INFORM-DAY# please",
+            "I need a room starting on #HOTEL-INFORM-DAY# .",
+            "Let 's try for #HOTEL-INFORM-DAY#",
+            "I need the room starting on #HOTEL-INFORM-DAY# , please ."
+        ],
+        "Area": [
+            "I need a place to stay in the #HOTEL-INFORM-AREA# please .",
+            "I would prefer the hotel be in the #HOTEL-INFORM-AREA# part of town .",
+            "I ' m also looking for a place to stay . In the #HOTEL-INFORM-AREA# preferably .",
+            "Would you be able to help me find a place to stay in the #HOTEL-INFORM-AREA# side of town ?",
+            "I ' m looking for a place to stay in the #HOTEL-INFORM-AREA# part of town .",
+            "I ' m looking for a hotel in the #HOTEL-INFORM-AREA# .",
+            "I need it in the #HOTEL-INFORM-AREA# , please ."
+        ],
+        "People": [
+            "I need reservations for #HOTEL-INFORM-PEOPLE# .",
+            "Yes , could you book the hotel room for me for #HOTEL-INFORM-PEOPLE# people ?",
+            "There are #HOTEL-INFORM-PEOPLE# of us .",
+            "That will work . Can you make a reservation for #HOTEL-INFORM-PEOPLE# people , please ?",
+            "There is going to be #HOTEL-INFORM-PEOPLE# of us",
+            "Actually , I 'd like to book it for #HOTEL-INFORM-PEOPLE# people . Can you help with that ?",
+            "There will be #HOTEL-INFORM-PEOPLE# people .",
+            "There will be #HOTEL-INFORM-PEOPLE# of us .",
+            "Yes , could you book the hotel room for me for #HOTEL-INFORM-PEOPLE# people ?",
+            "I would like to book it for #HOTEL-INFORM-PEOPLE# people . Thanks ."
+        ],
+        "Stars": [
+            "I would like it to be a #HOTEL-INFORM-STARS# star hotel .",
+            "I want a place with a #HOTEL-INFORM-STARS# star rating",
+            "I would like a #HOTEL-INFORM-STARS# star hotel though , please .",
+            "It should have a #HOTEL-INFORM-STARS# star rating .",
+            "do you have any hotels with a #HOTEL-INFORM-STARS# star rating ?",
+            "do they have a #HOTEL-INFORM-STARS# star rating ?",
+            "Are there any #HOTEL-INFORM-STARS# stars available ?",
+            "I ' m looking for a place that is at least a #HOTEL-INFORM-STARS# star location ?",
+            "I would like it to have a #HOTEL-INFORM-STARS# star rating ."
+        ],
+        "Name": [
+            "I am looking for a specific hotel , its name is #HOTEL-INFORM-NAME#",
+            "I am looking for a particular hotel . Its name is called #HOTEL-INFORM-NAME#",
+            "I am looking for a hotel call #HOTEL-INFORM-NAME# .",
+            "I am staying in Cambridge soon and would like to stay at #HOTEL-INFORM-NAME# .",
+            "Yes ! I ' m looking for a particular hotel , the name is #HOTEL-INFORM-NAME# .",
+            "Can you tell me about the #HOTEL-INFORM-NAME# hotel ?",
+            "I ' m looking for information on a hotel called #HOTEL-INFORM-NAME# .",
+            "Can you also help me find a hotel called the #HOTEL-INFORM-NAME# ?",
+            "I am looking for a hotel by the name of #HOTEL-INFORM-NAME# .",
+            "Thank you and I am also looking for the #HOTEL-INFORM-NAME# ."
+        ],
+        "none": [
+            "I need a hotel as well .",
+            "I ' m looking for a hotel .",
+            "I need a hotel close to downtown Cambridge please .",
+            "I also need a hotel"
+        ],
+        "Internet": [
+            "it should have free wifi .",
+            "I do need a place that has free wifi .",
+            "I need one with wifi ."
+        ]
+    },
+    "Hotel-Request": {
+        "Addr": [
+            "I just need the address .",
+            "no , i just need their address .",
+            "Can you give me the address please ?",
+            "could I get their address ?",
+            "Could you give me the address , please ?",
+            "may I have the address for that hotel ?",
+            "I do n't need it booked but what s the address ?"
+        ],
+        "Ref": [
+            "Please book it and provide the reference number .",
+            "please give me the reference number .",
+            "a reference number would be great !",
+            "please book it and provide a reference number .",
+            "can I get the reference number once you make that reservation ?",
+            "That 's great . Can you book the room and give me the reference number ?",
+            "I 'd like the reference number as well .",
+            "Thank you . I will also need the booking reference number .",
+            "Okay , just let me get a reference number when you book it .",
+            "I need the reference number too ."
+        ],
+        "Post": [
+            "Can I get the postcode for both of them ?",
+            "That sounds fine , I just need the postcode though .",
+            "Can I please have the post code ?",
+            "I just need the postcode .",
+            "What is the postcode ?",
+            "Actually , can you give me the postcode for that ?",
+            "could you provide me with their postcode ?",
+            "And I need a postcode .",
+            "I would like to get the postcode , please .",
+            "Can I get their postcode please ?"
+        ],
+        "Phone": [
+            "Do you have their phone numbers ?",
+            "i need the phone number",
+            "Could I get the phone number ?",
+            "What 's the phone number ?",
+            "can you get me their phone number ?",
+            "Can you give me the phone number , please ?",
+            "Just get me their phone number .",
+            "What is their phone number ?"
+        ],
+        "Parking": [
+            "Do they have parking ?",
+            "Does that have free parking ?",
+            "Do any / all of them have free parking as well ?",
+            "Do they have free parking ?",
+            "Can you tell me if they have free parking ?",
+            "Could you tell me if they have free parking ?",
+            "Did they have free parking ?",
+            "can you tell me if it has free parking ?"
+        ],
+        "Price": [
+            "Also , what is the price range of the hotel ?",
+            "What is the price range ?",
+            "What is the price range for the hotel ?",
+            "I just need to know the price range .",
+            "Do you have a price range for that hotel ?",
+            "Can you give me the price range ?",
+            "What is the price range of the hotel ?"
+        ],
+        "Area": [
+            "Can you tell me which area it is in ?",
+            "What area is it in ?",
+            "Do you know the area the hotel is located in ?",
+            "that would be great . What 's the area ?",
+            "can you tell me what area that 's in ?",
+            "Can you also confirm the area that is in please ?",
+            "What is the area ?",
+            "yeah , what area of town is it in ?",
+            "What 's the area at first ?"
+        ],
+        "Type": [
+            "Thanks , what type of hotel is it ?",
+            "what type of hotel is it ?",
+            "what type of hotels are they ?",
+            "What type of hotel is it ?",
+            "What type of accommodations are they",
+            "I need the type of place it is , please .",
+            "I am wondering what type of hotel , please ."
+        ],
+        "Internet": [
+            "Does it have internet ?",
+            "No , I just need to know if they have free internet .",
+            "Can I just confirm it has free internet as well",
+            "can you tell me if the hotel has internet available ?",
+            "Can you tell me if they have free internet ?",
+            "Do they also have internet available ?",
+            "Do any of them offer internet ?",
+            "Do they have free wifi ?",
+            "I need to know if they have internet service ."
+        ],
+        "Stars": [
+            "can you please tell me how many stars it has ?",
+            "how many stars it is ?",
+            "How many stars is the hotel rated ?",
+            "How many stars is it ?",
+            "how many stars ?",
+            "How many stars does the hotel have ?",
+            "Thanks , how many stars is it rated ?"
+        ]
+    },
+    "Police-Inform": {
+        "none": [
+            "Hello , I have been robbed . Can you please help me get in touch with the police ?",
+            "Can you tell me the address to the police station in Cambridge ?",
+            "Hi , I would like to find Parkside Police Station please .",
+            "Help , I need to find the nearest police station .",
+            "There 's a Parkside Police Station in town , right ?",
+            "I am looking for a police station in Parkside",
+            "Help I was just robbed ! Could you please help me contact the police ?"
+        ]
+    },
+    "Police-Request": {
+        "Post": [
+            "Can I please have the postcode as well ?",
+            "I will also need the postcode please .",
+            "Can I get the postcode ?",
+            "what is its postcode ?",
+            "What is the postcode for that station ?",
+            "may I also please have the postcode ?",
+            "Can you help me with locating the postcode ?",
+            "the postcode please",
+            "What is the postcode ?"
+        ],
+        "Addr": [
+            "Was Parkside the address of the police station ? If not , can I have the address please ?",
+            "Also , can you give me the exact address to the station ?",
+            "Could I also get the address of the police station ?",
+            "Can you give me their address , please ?",
+            "Yes and the address , as well . Thanks .",
+            "What is the address ?",
+            "Can you give me the exact address for the police ?",
+            "Yes , I will need their address also please .",
+            "Great , could I also have their address .",
+            "Do you have their address ?"
+        ],
+        "Phone": [
+            "Do you have the phone number there ?",
+            "What is the police phone number , please ?",
+            "Can you give me the phone number please ?",
+            "May I get the phone number ?",
+            "Thank you , what is their phone number ?",
+            "Yes , I 'll also need their phone number .",
+            "Could you tell me where to find the nearest police station and give the telephone number ?",
+            "I only needed the phone number . Thank you !",
+            "I do n't know I am new to this area , please just give me the phone number to the police station .",
+            "I need to call them actually right now - do you have their phone number ?"
+        ]
+    },
+    "Restaurant-Inform": {
+        "Name": [
+            "I am looking for a particular restaurant . It is called #RESTAURANT-INFORM-NAME# .",
+            "I would like #RESTAURANT-INFORM-NAME# .",
+            "Could you just give me the number for #RESTAURANT-INFORM-NAME# .",
+            "It is called #RESTAURANT-INFORM-NAME# .",
+            "I am looking for details on the #RESTAURANT-INFORM-NAME# restaurant .",
+            "i need info about #RESTAURANT-INFORM-NAME# restaurant .",
+            "i am looking for a particular restaurant . Its name is called #RESTAURANT-INFORM-NAME#",
+            "Need a restaurant called #RESTAURANT-INFORM-NAME#",
+            "I also am looking for a restaurant as well . It 's called #RESTAURANT-INFORM-NAME# .",
+            "I ' m looking for a restaurant named #RESTAURANT-INFORM-NAME# ."
+        ],
+        "Area": [
+            "I ' m so hungry - can you find me a place to eat in the city #RESTAURANT-INFORM-AREA# ?",
+            "Can you help me find a restaurant ? I want to find a place in the #RESTAURANT-INFORM-AREA# .",
+            "I would prefer it in the #RESTAURANT-INFORM-AREA# area .",
+            "I am also in the market for a new restaurant . Is there something in the #RESTAURANT-INFORM-AREA# of town ?",
+            "Is that located in the #RESTAURANT-INFORM-AREA# ?",
+            "I 'd like to be in the #RESTAURANT-INFORM-AREA# please .",
+            "What restaurants are located in the #RESTAURANT-INFORM-AREA# ?",
+            "I also would like information on a place to eat in the #RESTAURANT-INFORM-AREA# of town ."
+        ],
+        "Price": [
+            "it just needs to be #RESTAURANT-INFORM-PRICE# .",
+            "I 'd like a #RESTAURANT-INFORM-PRICE# priced one .",
+            "I want to find a #RESTAURANT-INFORM-PRICE# priced restaurant .",
+            "I ' m looking for an #RESTAURANT-INFORM-PRICE# restaurant .",
+            "I am looking for a #RESTAURANT-INFORM-PRICE# restaurant .",
+            "Actually I need a #RESTAURANT-INFORM-PRICE#ly priced restaurant . Are there any fitting that description ?",
+            "Oh , I really need something #RESTAURANT-INFORM-PRICE# .",
+            "I also need a place to dine that is #RESTAURANT-INFORM-PRICE# priced ."
+        ],
+        "Food": [
+            "How about #RESTAURANT-INFORM-FOOD# .",
+            "are there any #RESTAURANT-INFORM-FOOD# restaurants ?",
+            "Hmm , I 'll try #RESTAURANT-INFORM-FOOD# .",
+            "I 'd like to find a #RESTAURANT-INFORM-FOOD# restaurant , if possible .",
+            "Do you have #RESTAURANT-INFORM-FOOD# food ?",
+            "Yes . This restaurant should serve #RESTAURANT-INFORM-FOOD# food too .",
+            "I ' m visiting Cambridge and would like some suggestions for an restaurant which serves #RESTAURANT-INFORM-FOOD# .",
+            "how about a #RESTAURANT-INFORM-FOOD# restaurant ?",
+            "I would prefer #RESTAURANT-INFORM-FOOD# food please ."
+        ],
+        "none": [
+            "I need a restaurant .",
+            "I need a restaurant to dine at in Cambridge on my upcoming trip .",
+            "Hello , can you help me find a restaurant for my upcoming trip to Cambridge ?",
+            "I need to find information about a certain restaurant , can you help with that ?"
+        ],
+        "Time": [
+            "can you try for #RESTAURANT-INFORM-TIME# ?",
+            "arriving at the restaurant by #RESTAURANT-INFORM-TIME# .",
+            "Yes . How about #RESTAURANT-INFORM-TIME# ?",
+            "Can you try to book it at #RESTAURANT-INFORM-TIME# .",
+            "How about #RESTAURANT-INFORM-TIME# ?",
+            "can you please try #RESTAURANT-INFORM-TIME# ?",
+            "Can you try #RESTAURANT-INFORM-TIME# ?",
+            "I would like a table for #RESTAURANT-INFORM-TIME# ."
+        ],
+        "People": [
+            "There are #RESTAURANT-INFORM-PEOPLE# people",
+            "Yes , I want to book a table for #RESTAURANT-INFORM-PEOPLE# people .",
+            "Please try to book a table for #RESTAURANT-INFORM-PEOPLE# people at your favorite one .",
+            "I need a reservation for #RESTAURANT-INFORM-PEOPLE# people .",
+            "I need a table for #RESTAURANT-INFORM-PEOPLE# people .",
+            "We will have #RESTAURANT-INFORM-PEOPLE# people in the party .",
+            "Book a table for #RESTAURANT-INFORM-PEOPLE# person please .",
+            "Can you book me a table for #RESTAURANT-INFORM-PEOPLE# ?",
+            "It will be for #RESTAURANT-INFORM-PEOPLE# people .",
+            "There will be #RESTAURANT-INFORM-PEOPLE# of us ."
+        ],
+        "Day": [
+            "i am also looking for a restaurant to book for #RESTAURANT-INFORM-DAY#",
+            "I 'll be needing a table for #RESTAURANT-INFORM-DAY# .",
+            "book a table on #RESTAURANT-INFORM-DAY# .",
+            "We will be there #RESTAURANT-INFORM-DAY# night .",
+            "Please make a reservation for #RESTAURANT-INFORM-DAY# .",
+            "I do need a booking for #RESTAURANT-INFORM-DAY# .",
+            "Please reserve a table on #RESTAURANT-INFORM-DAY# .",
+            "I would like to book a table for #RESTAURANT-INFORM-DAY#"
+        ]
+    },
+    "Restaurant-Request": {
+        "Addr": [
+            "Thank you . May I have the address ?",
+            "may I have the address ?",
+            "please give me their address .",
+            "What is the address ?",
+            "May I have the address for the restaurant please ?",
+            "Can you give me the address ?",
+            "Which ever you think is the best , please give me the address .",
+            "May I also get the address for the restaurant ?"
+        ],
+        "Post": [
+            "I just need the post code .",
+            "I will need the postcode though .",
+            "Can I get the postcode for it please ?",
+            "What is the postal code ?",
+            "No thank you I just need the postcode .",
+            "What is their postcode ?",
+            "can I get the postcode for the restaurant ?",
+            "Can I get the postcode ?",
+            "I would like to know the postcode , if possible ?",
+            "can I have their postcode , please ?"
+        ],
+        "Phone": [
+            "May I have their telephone number please ?",
+            "I would like their phone number .",
+            "Please provide the phone number .",
+            "Please provide their phone number , thank you .",
+            "That place sounds great . Can I get the phone number please ?",
+            "What is the phone number ?",
+            "Can I just get the phone number ?"
+        ],
+        "Price": [
+            "What is the price range ?",
+            "What is the price range of the restaurant ?",
+            "I was wondering the price range of the restaurant .",
+            "Could you recommend one and give me the price range ?",
+            "I also need to know what the price range is for this restaurant .",
+            "Yes , do you happen to know what their price range is ?",
+            "Can you tell me the price range for the restaurant ?",
+            "What is the price range for the restaurant ?"
+        ],
+        "Ref": [
+            "Can I have the reference number please ?",
+            "Can I have the reference number .",
+            "Sounds good . Book it please and I 'll need the reference number .",
+            "Why do n't you just schedule it and give me the reference number please .",
+            "give me the reference number",
+            "Can you book it for me and get a reference number ?",
+            "Could I have the reference number please",
+            "May I have the reference number please ?",
+            "can you please and send me the reference number .",
+            "I need the reference number too please ."
+        ],
+        "Food": [
+            "What type of food do each of them serve ?",
+            "What type of food do they serve ?",
+            "What type of food do they serve , please ?",
+            "Can you tell me what kind of food they serve ?",
+            "What kind of food does the restaurant serve ?",
+            "May I ask what type of food does the restaurant serve ?",
+            "What 's the food type ?"
+        ],
+        "Area": [
+            "can you tell me what area of town that 's in ?",
+            "what area is it in ?",
+            "I 'll need to know the area that it 's located in .",
+            "What is the area ?",
+            "What area is the restaurant in ?",
+            "Yes I need the area for that as well .",
+            "Can you tell me what area they are in ?",
+            "What is the area for the restaurant ?",
+            "What area is the restaurant in ?"
+        ]
+    },
+    "Taxi-Inform": {
+        "Leave": [
+            "I want to leave after #TAXI-INFORM-LEAVE# .",
+            "thanks . i want to leave by #TAXI-INFORM-LEAVE# .",
+            "Okay I also need a taxi that will leave by #TAXI-INFORM-LEAVE# .",
+            "#TAXI-INFORM-LEAVE# , please .",
+            "still need a cab by my booked time , #TAXI-INFORM-LEAVE# please",
+            "I want to leave by #TAXI-INFORM-LEAVE# .",
+            "Hi , I need to book a taxi , please ? I need to leave sometime after #TAXI-INFORM-LEAVE# ."
+        ],
+        "none": [
+            "I 'll need a ride there . Can you arrange a taxi for me ?",
+            "Now I need a taxi .",
+            "Alright book a taxi for me as well . I 'll need to get to the two places and I ' m not familiar with the town . Thanks .",
+            "I also want to book a taxi to commute between the two places .",
+            "Yes please . I need a taxi to commute .",
+            "Yes I would also like a taxi to commute between the two places .",
+            "i 'll need a taxi",
+            "Can you schedule me a taxi to take me there ?",
+            "Thank you .        Would you also give me the contact number for the taxi ?",
+            "One more thing , I would like to book a taxi to commute between the two places ."
+        ],
+        "Arrive": [
+            "I 'd like to arrive prior to the #TAXI-INFORM-ARRIVE# time .",
+            "I 'd like to get to the Gallery by #TAXI-INFORM-ARRIVE# , please .",
+            "I want to arrive by #TAXI-INFORM-ARRIVE#",
+            "I 'd like the arrival time to be #TAXI-INFORM-ARRIVE# , please .",
+            "I need to arrive by #TAXI-INFORM-ARRIVE# .",
+            "I would like to arrive by #TAXI-INFORM-ARRIVE# .",
+            "My arrival time will be #TAXI-INFORM-ARRIVE# .",
+            "I 'd like to arrive by #TAXI-INFORM-ARRIVE# ."
+        ],
+        "Dest": [
+            "I need a taxi to take me in time for my reservation to #TAXI-INFORM-DEST# today",
+            "I want to visit the #TAXI-INFORM-DEST# and need a taxi to take me",
+            "I 'll be heading to #TAXI-INFORM-DEST# .",
+            "Hi , i need to book a taxi to go to #TAXI-INFORM-DEST# .",
+            "I need a tax to #TAXI-INFORM-DEST# .",
+            "I will be going to #TAXI-INFORM-DEST# .",
+            "The taxi should go to #TAXI-INFORM-DEST# .",
+            "I need a taxi to take me to #TAXI-INFORM-DEST#",
+            "Taxi to #TAXI-INFORM-DEST# please",
+            "I want to go to #TAXI-INFORM-DEST# ."
+        ],
+        "Depart": [
+            "I am leaving from the #TAXI-INFORM-DEPART# .",
+            "I want to be picked up at #TAXI-INFORM-DEPART# please",
+            "I need a taxi to pick me up from #TAXI-INFORM-DEPART# please",
+            "The taxi should depart from #TAXI-INFORM-DEPART#",
+            "I ' m at #TAXI-INFORM-DEPART#",
+            "I am departing from #TAXI-INFORM-DEPART# .",
+            "I need a taxi to get me from #TAXI-INFORM-DEPART#",
+            "I need to book a taxi from #TAXI-INFORM-DEPART# .",
+            "Can a taxi pick me up at #TAXI-INFORM-DEPART# ?",
+            "I want to depart from #TAXI-INFORM-DEPART#"
+        ]
+    },
+    "Taxi-Request": {
+        "Car": [
+            "Yes I would like the car type please for my booking .",
+            "It would be nice if you would tell me the car type .",
+            "What is the car type for the taxi ?",
+            "Please . Can I get the car type for that ?",
+            "Could I have the car type for this trip ?",
+            "I need the car type please .",
+            "Can you give me the car type ?"
+        ],
+        "Phone": [
+            "Can I get the phone number ?",
+            "Could you please send me the phone number .",
+            "Do you have their phone number ?",
+            "Can I get the phone also please ?",
+            "Can you get me the contact phone number please ?",
+            "please provide the phone number ."
+        ]
+    },
+    "Train-Inform": {
+        "Arrive": [
+            "I want to get there by #TRAIN-INFORM-ARRIVE# at the latest .",
+            "Do you have a train that arrives closer to #TRAIN-INFORM-ARRIVE# .",
+            "I 'd like to arrive by #TRAIN-INFORM-ARRIVE# , do you have something close to that time ?",
+            "I need it to arrive by #TRAIN-INFORM-ARRIVE# .",
+            "I 'd like to arrive by #TRAIN-INFORM-ARRIVE# .",
+            "I want to get there by #TRAIN-INFORM-ARRIVE# .",
+            "I want to arrive by #TRAIN-INFORM-ARRIVE# .",
+            "Well I want to arrive by #TRAIN-INFORM-ARRIVE# ."
+        ],
+        "Depart": [
+            "I am departing from #TRAIN-INFORM-DEPART# .",
+            "Is it going to #TRAIN-INFORM-DEPART# ?",
+            "I need it to depart from #TRAIN-INFORM-DEPART# .",
+            "I will departing from #TRAIN-INFORM-DEPART# .",
+            "Thanks ! I also need a train departing from #TRAIN-INFORM-DEPART# .",
+            "I would like to depart from #TRAIN-INFORM-DEPART# .",
+            "I ' m also looking for a train from #TRAIN-INFORM-DEPART# .",
+            "Great I also need a train departs from #TRAIN-INFORM-DEPART# .",
+            "I ' m departing from #TRAIN-INFORM-DEPART# .",
+            "I 'll be departing from #TRAIN-INFORM-DEPART# ."
+        ],
+        "Day": [
+            "I would like to leave on #TRAIN-INFORM-DAY#",
+            "The train should leave on #TRAIN-INFORM-DAY# .",
+            "I will leav on #TRAIN-INFORM-DAY# .",
+            "This will be for #TRAIN-INFORM-DAY# .",
+            "I need a train on #TRAIN-INFORM-DAY# .",
+            "I want a train leaving on #TRAIN-INFORM-DAY# .",
+            "I ' m looking for a train leaving on #TRAIN-INFORM-DAY# please .",
+            "I need to travel on #TRAIN-INFORM-DAY# .",
+            "I ' m looking to travel on #TRAIN-INFORM-DAY#",
+            "I would like to leave on #TRAIN-INFORM-DAY# ."
+        ],
+        "People": [
+            "Please make a booking for #TRAIN-INFORM-PEOPLE# people please .",
+            "I need #TRAIN-INFORM-PEOPLE# tickets .",
+            "I need to make a booking for #TRAIN-INFORM-PEOPLE# people ?",
+            "Yes , please book #TRAIN-INFORM-PEOPLE# seats .",
+            "Yes , can you book that for #TRAIN-INFORM-PEOPLE# ?",
+            "I would like #TRAIN-INFORM-PEOPLE# tickets please .",
+            "I will need #TRAIN-INFORM-PEOPLE# seats .",
+            "Book #TRAIN-INFORM-PEOPLE# seats for me please .",
+            "I would like to make a booking for #TRAIN-INFORM-PEOPLE# person .",
+            "I would like a booking for #TRAIN-INFORM-PEOPLE# people ."
+        ],
+        "none": [
+            "Please book that train for me now .",
+            "I would also like to book a train , please .",
+            "yeah i need a train too",
+            "please book the train for me . That will be all .",
+            "I am also looking for information about a train . Can you help me with that ?",
+            "I would just like to find a train first , and get the info . I think I have the info I needed .",
+            "I also need a train"
+        ],
+        "Dest": [
+            "Howdy , I need a train heading into #TRAIN-INFORM-DEST# .",
+            "i am leaving for #TRAIN-INFORM-DEST#",
+            "I am going to #TRAIN-INFORM-DEST#",
+            "I need a train going to #TRAIN-INFORM-DEST# .",
+            "I need to find a train to #TRAIN-INFORM-DEST# please .",
+            "Can you tell me when that train will be arriving in #TRAIN-INFORM-DEST# ?",
+            "Yes I would like to go to #TRAIN-INFORM-DEST# please .",
+            "I need to book a train to #TRAIN-INFORM-DEST# .",
+            "I need some information on a train going to #TRAIN-INFORM-DEST# .",
+            "Ok , great thanks . Can you also help me find a train going to #TRAIN-INFORM-DEST# ?"
+        ],
+        "Leave": [
+            "Leaving anytime after #TRAIN-INFORM-LEAVE# please .",
+            "The earlier the better , so whichever train leaves closest to #TRAIN-INFORM-LEAVE#",
+            "I need a train leaving after #TRAIN-INFORM-LEAVE# .",
+            "I would like to leave after #TRAIN-INFORM-LEAVE# .",
+            "I need to leave after #TRAIN-INFORM-LEAVE# .",
+            "Yes , I need to leave sometimes after #TRAIN-INFORM-LEAVE# .",
+            "Yes I ' m leaving on Saturday and not too early , sometime after #TRAIN-INFORM-LEAVE# .",
+            "I would like to leave anytime after #TRAIN-INFORM-LEAVE# .",
+            "I would like to leave after #TRAIN-INFORM-LEAVE#"
+        ]
+    },
+    "Train-Request": {
+        "Ref": [
+            "Could I have the reference number as well ?",
+            "Could I get the reference number ?",
+            "Great , can you give me the reference number .",
+            "if I could please get the reference number .",
+            "Sounds great . Please book and provide me with a reference number .",
+            "please book and send me a reference number .",
+            "please and I will need the reference number .",
+            "Can you provide me with a reference number after booking ?"
+        ],
+        "Time": [
+            "Can you please give me the travel time .",
+            "Can you give me the travel time please ?",
+            "What is the total travel time ?",
+            "Yes , what is the duration of the train ride ?",
+            "What 's the travel time on that trip ?",
+            "What is the travel time ?",
+            "That should work , what is the travel time on that ?",
+            "What is the travel time for that ride ?",
+            "could you tell me the travel time ?"
+        ],
+        "Ticket": [
+            "What is the price for the train ?",
+            "Could you give me the price for that train ?",
+            "What is the price of a ticket , please ?",
+            "i need to know the price",
+            "Can you give me the price ?",
+            "What 's the price ?",
+            "Can you tell me the price ?"
+        ],
+        "Leave": [
+            "What time does the train leave ?",
+            "Could you comfirm the departure time of that train ?",
+            "What is the departure time ?",
+            "Can you tell me what time it leaves ?",
+            "I need the departure time .",
+            "I need to know the departure time for that ride ."
+        ],
+        "Id": [
+            "What is the train ID ?",
+            "I need the train ID , please .",
+            "What is the train ID you found ?",
+            "give me the train id , please .",
+            "What 's the train ID on that please ?",
+            "What is the train id , please ?",
+            "Could you also give me the train ID ?",
+            "I just need to know the id . I do not need to book it .",
+            "I would like to know the train ID for that train please ."
+        ],
+        "Arrive": [
+            "when does it arrive ?",
+            "what is the arrival time ?",
+            "Can you tell me what the arrival time is ?",
+            "What is the arrival time for that train ?",
+            "What time does it arrive by ?",
+            "What 's the arrival time for that ?"
+        ]
+    },
+    "general-bye": {
+        "none": [
+            "You were great . Goodbye .",
+            "Thank you very much , goodbye .",
+            "Thank you , goodbye",
+            "I am all set . Have a nice day . Bye .",
+            "Ok , have a good day . Goodbye .",
+            "That 's all I need today . Thanks ! Bye !",
+            "Actually , I ' m all set . Thank you ! Bye !",
+            "That 's all the help I need . Take care . Bye ."
+        ]
+    },
+    "general-greet": {
+        "none": [
+            "Hello !"
+        ]
+    },
+    "general-thank": {
+        "none": [
+            "Thank you that will be all for now .",
+            "Thank you for all the help ! I appreciate it .",
+            "Thank you . That 's all I needed .",
+            "That 's all I need for today . Thanks for your help !",
+            "Great that 's all that I needed to know , thank you !",
+            "Thank you that will do .",
+            "That 's all I need right now . Thanks , you have been very helpful !",
+            "That 's all I need , thanks so much for all of your help ! Have a great day !",
+            "Also , thanks for the apology . I do n't need anything else at this time .",
+            "That 's all I need today , thank you ."
+        ]
+    }
+}

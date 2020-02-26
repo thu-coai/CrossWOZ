@@ -1,0 +1,163 @@
+{
+    "inform": {
+        "address": [
+            "It is at #INFORM-ADDRESS#",
+            "It is located at  #INFORM-ADDRESS#.",
+            "The address is #INFORM-ADDRESS# .",
+            "Their address is #INFORM-ADDRESS# .",
+            "they are located at #INFORM-ADDRESS#"
+        ],
+        "area": [
+            "It is in the #INFORM-AREA# part of town.",
+            "It is located in the #INFORM-AREA# .",
+            "it is in the #INFORM-AREA# area .",
+            "it is located in the #INFORM-AREA# part of town"
+        ],
+        "food": [
+            "How about #INFORM-FOOD# ?",
+            "It is #INFORM-FOOD# food .",
+            "It's #INFORM-FOOD#.",
+            "That is a #INFORM-FOOD# restaurant .",
+            "The restaurant serve #INFORM-FOOD# food .",
+            "They serve #INFORM-FOOD# .",
+            "They serve #INFORM-FOOD# food .",
+            "Would you like #INFORM-FOOD# food ?",
+            "Would you like to try an #INFORM-FOOD# restaurant ?"
+        ],
+        "name": [
+            "#INFORM-NAME# has some great reviews .",
+            "#INFORM-NAME# looks like a good place .",
+            "#INFORM-NAME# matches your description .",
+            "#INFORM-NAME# might be one you would enjoy.",
+            "#INFORM-NAME# seems to fit your request.",
+            "#INFORM-NAME# sounds like it might be what you are looking for .",
+            "How about #INFORM-NAME# ?",
+            "How does the #INFORM-NAME# sound ?",
+            "I have found one called #INFORM-NAME#.",
+            "I recommend #INFORM-NAME#",
+            "I would suggest #INFORM-NAME# .",
+            "I would suggest you try the #INFORM-NAME#. ",
+            "Its name is #INFORM-NAME#. ",
+            "Okay , how about #INFORM-NAME# ?",
+            "Would you like to try #INFORM-NAME# ?",
+            "there 's a place called #INFORM-NAME#"
+        ],
+        "none": [
+            "Is there anything else I can help you with ?"
+        ],
+        "phone": [
+            "#INFORM-PHONE# is the phone number",
+            "It is #INFORM-PHONE# .",
+            "It is at #INFORM-PHONE#.",
+            "The number is #INFORM-PHONE#.",
+            "The number there is #INFORM-PHONE# .",
+            "The phone number is #INFORM-PHONE# .",
+            "Their number is #INFORM-PHONE# .",
+            "Yes, here it is #INFORM-PHONE#.",
+            "their phone number is #INFORM-PHONE#",
+            "you can reach them at #INFORM-PHONE# ."
+        ],
+        "postcode": [
+            "The postcode is #INFORM-POSTCODE# .",
+            "Their postcode is #INFORM-POSTCODE#"
+        ],
+        "pricerange": [
+            "It 's in the #INFORM-PRICERANGE# price range .",
+            "It is #INFORM-PRICERANGE#.",
+            "It is a #INFORM-PRICERANGE# restaurant .",
+            "They are #INFORM-PRICERANGE#",
+            "They are in the #INFORM-PRICERANGE# price range .",
+            "They are quite #INFORM-PRICERANGE# .",
+            "This is a #INFORM-PRICERANGE# one .",
+            "This restaurant is in the #INFORM-PRICERANGE# price range .",
+            "Yes, it is listed as #INFORM-PRICERANGE# in my database. "
+        ]
+    },
+    "nooffer": {
+        "area": [
+            "Sorry , there are no restaurants like that in the #NOOFFER-AREA# .",
+            "I did not find any restaurants in #NOOFFER-AREA# .",
+            "I am sorry there is none even in the #NOOFFER-AREA#",
+            "I am sorry there are no restaurants in #NOOFFER-AREA# that match that description .",
+            "There are none in #NOOFFER-AREA# of town .",
+            "i have n't found any in the #NOOFFER-AREA#",
+            "there no such restraunts in #NOOFFER-AREA#"
+        ],
+        "food": [
+            "There are no #NOOFFER-FOOD# food places , shall I run another search ?",
+            "I am unable to find any #NOOFFER-FOOD# restaurants in town .",
+            "I have nothing with #NOOFFER-FOOD# . Do you have another preference ?",
+            "There are no #NOOFFER-FOOD# restaurants .",
+            "I ' m sorry I have no restaurants serving #NOOFFER-FOOD# food .",
+            "There are no #NOOFFER-FOOD# restaurants unfortunately ."
+        ],
+        "name": [
+            "i ' m sorry . i can not find details for #NOOFFER-NAME# ."
+        ],
+        "none": [
+            "I am afraid there is none .",
+            "I cannot find any restaurants matching your request. Can I find something else for you instead?",
+            "I do n't have anything meeting that criteria . Can I look for something else ?",
+            "I'm sorry I do not find any restaurants meeting those requirements",
+            "I'm sorry there are no cantonese restaurants. Would you like something else?",
+            "No , I ' m sorry . The search did n't pull up any matches .",
+            "No restaurant matching your description have been found.",
+            "There are no matching records found for that request .",
+            "There is no listing for this restaurant",
+            "We do n't have any of those , sad to say . Want to broaden the search ?",
+            "we do nt have a place that matches those qualities . can you try something else ?"
+        ],
+        "pricerange": [
+            "I do n't have anything in the #NOOFFER-PRICERANGE# range that fits that criteria .",
+            "There are none in #NOOFFER-PRICERANGE# , perhaps something else ?",
+            "no #NOOFFER-PRICERANGE# with those specifications",
+            "There are no #NOOFFER-PRICERANGE# ones .",
+            "No #NOOFFER-PRICERANGE# restaurant"
+        ]
+    },
+    "request": {
+        "area": [
+            "what location ?",
+            "What area of town would you prefer ?",
+            "Do you have a specific area in mind ?",
+            "We need some more information . Where are looking to eat ?",
+            "Do you have an area of town you prefer ?",
+            "Which side of town would you prefer ?",
+            "What area should the restaurant be in ?",
+            "Do you have an area preference ?",
+            "Do you have a location preference ?"
+        ],
+        "food": [
+            "Do you have any specific type of food you would like ?",
+            "What type of food are you looking for ?",
+            "Do you have a preference in food type ?",
+            "What cuisine are you interested in ?",
+            "What type of food would you like ?",
+            "What type of food do you want to eat ?",
+            "Is there a certain kind of food you would like ?",
+            "what type of food would you like ?",
+            "what type of food would you like to eat ?",
+            "did you have a specific kind of cuisine in mind ?"
+        ],
+        "name": [
+            "Do you know the name ?",
+            "what is the name of the restaurant ?",
+            "What 's the name of the restaurant you 're looking for ?",
+            "what is the name of the restaurant ?",
+            "What is the name of the restaurant you have in mind ?",
+            "Do you know the name of the location ?"
+        ],
+        "pricerange": [
+            "is there a price range that you prefer ?",
+            "Do you have a price range ?",
+            "what price range would you like to stay within ?",
+            "Do you have a preference for the price range ?",
+            "Do you have a certain price range you would like ?",
+            "Did you have a price range in mind ?",
+            "what is the price range you are looking for ?",
+            "what price range are you looking for ?",
+            "Do you have a price range in mind ?",
+            "Is there a price range you would prefer to stay within ?"
+        ]
+    }
+}

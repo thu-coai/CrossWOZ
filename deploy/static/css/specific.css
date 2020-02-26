@@ -1,0 +1,12 @@
+.login_box {
+    width:400px;
+    height:200px;
+    margin-left: 38%;
+    background-color: #f7f7f9;
+}
+
+.login_box_line {
+    width:300px;
+    height:100px;
+    margin-left:50px;
+}
