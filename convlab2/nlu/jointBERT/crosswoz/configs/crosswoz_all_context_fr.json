@@ -1,0 +1,25 @@
+{
+  "data_dir": "crosswoz/data/all_data",
+  "output_dir": "crosswoz/output/all_context_fr",
+  "zipped_model_path": "crosswoz/output/all_context_fr/bert_crosswoz_all_context_fr.zip",
+  "log_dir": "crosswoz/log/all_context_fr",
+  "DEVICE": "cuda:2",
+  "seed": 2019,
+  "cut_sen_len": 60,
+  "use_bert_tokenizer": false,
+  "model": {
+    "finetune": false,
+    "context": true,
+    "context_grad": false,
+    "pretrained_weights": "hfl/chinese-bert-wwm-ext",
+    "check_step": 1000,
+    "max_step": 40000,
+    "batch_size": 100,
+    "learning_rate": 1e-3,
+    "adam_epsilon": 1e-8,
+    "warmup_steps": 0,
+    "weight_decay": 0.0,
+    "dropout": 0.1,
+    "hidden_units": 1536
+  }
+}

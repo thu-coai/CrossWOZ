@@ -1,0 +1,56 @@
+*.pyc
+__pycache__
+
+.DS_Store
+
+# pycharm
+.idea
+
+# vscode
+.vscode
+
+# data
+data/**/train.json
+data/**/val.json
+data/**/test.json
+data/camrest/CamRest676_v2.json
+data/multiwoz/annotated_user_da_with_span_full.json
+data/schema/dstc8-schema-guided-dialogue-master
+**/processed_data/*
+data/mdbt/data
+data/mdbt/models
+data/mdbt/word-vectors
+convlab2/nlg/sclstm/**/resource/*
+convlab2/nlg/sclstm/**/resource_usr/*
+convlab2/nlg/sclstm/**/sclstm.pt
+convlab2/nlg/sclstm/**/sclstm.res
+convlab2/nlg/sclstm/**/sclstm.log
+convlab2/nlg/sclstm/**/sclstm_usr.pt
+convlab2/nlg/sclstm/**/sclstm_usr.res
+convlab2/nlg/sclstm/**/sclstm_usr.log
+convlab2/nlu/jointBERT/**/output/
+convlab2/dst/sumbt/multiwoz/output/
+convlab2/nlg/sclstm/**/generated_sens_sys.json
+convlab2/nlg/template/**/generated_sens_sys.json
+# test script
+*_test.py
+
+# log
+**/log/**
+*.log
+
+# save
+**/save/**
+
+# .bak.py
+*.bak.py
+
+# compile files
+build
+dist
+convlab2.egg-info
+
+# configs
+
+
+.ipynb_checkpoints
