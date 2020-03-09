@@ -17,8 +17,8 @@ Code:
 - TRADE: `convlab2/dst/trade/crosswoz`
 - SL policy: `convlab2/policy/mle/crosswoz`
 - SCLSTM: `convlab2/nlg/sclstm/crosswoz`
-- TemplateNLG: `convlab/nlg/template/crosswoz`
-- Simulator: `convlab/policy/rule/crosswoz`
+- TemplateNLG: `convlab2/nlg/template/crosswoz`
+- Simulator: `convlab2/policy/rule/crosswoz`
 
 ## Citing
 Please kindly cite our paper if this paper and the dataset are helpful.
