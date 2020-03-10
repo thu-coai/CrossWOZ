@@ -1,6 +1,6 @@
 """
 usage:
-from tatk.task.crosswoz.goal_generator import GoalGenerator
+from convlab2.task.crosswoz.goal_generator import GoalGenerator
 GoalGenerator.generate()
 """
 import json

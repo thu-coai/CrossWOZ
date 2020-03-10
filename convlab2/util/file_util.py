@@ -6,7 +6,7 @@ from convlab2.util.allennlp_file_utils import cached_path as allennlp_cached_pat
 
 def cached_path(file_path, cached_dir=None):
     if not cached_dir:
-        cached_dir = str(Path(Path.home() / '.tatk') / "cache")
+        cached_dir = str(Path(Path.home() / '.convlab2') / "cache")
 
     return allennlp_cached_path(file_path, cached_dir)
 

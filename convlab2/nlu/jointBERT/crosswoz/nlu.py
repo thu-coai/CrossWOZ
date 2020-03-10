@@ -23,7 +23,7 @@ class BERTNLU(NLU):
         output_dir = os.path.join(root_dir, config['output_dir'])
 
         if not os.path.exists(os.path.join(data_dir, 'intent_vocab.json')):
-            preprocess(mode, config['model']['pretrained_weights'])
+            preprocess(mode)
 
         intent_vocab = json.load(open(os.path.join(data_dir, 'intent_vocab.json')))
         tag_vocab = json.load(open(os.path.join(data_dir, 'tag_vocab.json')))

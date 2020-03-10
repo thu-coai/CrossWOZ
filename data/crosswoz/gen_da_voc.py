@@ -1,7 +1,7 @@
 import json
 import zipfile
 import os
-from tatk.util.crosswoz.lexicalize import delexicalize_da
+from convlab2.util.crosswoz.lexicalize import delexicalize_da
 
 
 def read_zipped_json(filepath, filename):

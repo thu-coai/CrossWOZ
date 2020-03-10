@@ -1,5 +1,5 @@
 """
-from tatk.util.crosswoz.dbquery import Database
+from convlab2.util.crosswoz.dbquery import Database
 db = Database()
 db.query(state['belief_state'], cur_domain)
 """

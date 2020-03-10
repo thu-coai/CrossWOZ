@@ -11,7 +11,7 @@ class RuleDST(DST):
 
     Attributes:
         state(dict):
-            Dialog state. Function ``tatk.util.crosswoz.state.default_state`` returns a default state.
+            Dialog state. Function ``convlab2.util.crosswoz.state.default_state`` returns a default state.
     """
     def __init__(self):
         super().__init__()
@@ -19,7 +19,7 @@ class RuleDST(DST):
         self.database = Database()
 
     def init_session(self, state=None):
-        """Initialize ``self.state`` with a default state, which ``tatk.util.crosswoz.state.default_state`` returns."""
+        """Initialize ``self.state`` with a default state, which ``convlab2.util.crosswoz.state.default_state`` returns."""
         self.state = default_state() if not state else deepcopy(state)
 
     def update(self, usr_da=None):

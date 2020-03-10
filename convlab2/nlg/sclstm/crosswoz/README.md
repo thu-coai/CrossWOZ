@@ -1,4 +1,4 @@
-# SCLSTM NLG on Multiwoz_zh
+# SCLSTM NLG on CrossWOZ
 
 Semantically-conditioned LSTM (SC-LSTM) is an NLG model that generates natural linguistically varied responses based on a deep, semantically controlled LSTM architecture. 
 
@@ -43,7 +43,7 @@ $ python evaluate.py [usr|sys]
 
 ## Data
 
-We use CrossWOZ data (`tatk/data/crosswoz`).
+We use CrossWOZ data (`data/crosswoz`).
 
 ## Performance on CrossWOZ
 
