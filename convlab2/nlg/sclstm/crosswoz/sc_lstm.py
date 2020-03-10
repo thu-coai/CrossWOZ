@@ -8,12 +8,12 @@ import torch
 import re
 
 from convlab2.util.file_util import cached_path
-from convlab2.nlg.sclstm.multiwoz.loader.dataset_woz import SimpleDatasetWoz
+from convlab2.nlg.sclstm.crosswoz.loader.dataset_woz import SimpleDatasetWoz
 from convlab2.nlg.sclstm.model.lm_deep import LMDeep
 from convlab2.nlg.nlg import NLG
 
 DEFAULT_DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models")
-DEFAULT_ARCHIVE_FILE = os.path.join(DEFAULT_DIRECTORY, "nlg-sclstm-multiwoz.zip")
+DEFAULT_ARCHIVE_FILE = os.path.join(DEFAULT_DIRECTORY, "nlg_sclstm_crosswoz.zip")
 
 
 def parse(is_user):

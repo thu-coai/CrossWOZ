@@ -6,7 +6,7 @@ import time
 root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 sys.path.append(root_dir)
 import torch
-from convlab2.nlg.sclstm.multiwoz.loader.dataset_woz import DatasetWoz, SimpleDatasetWoz
+from convlab2.nlg.sclstm.crosswoz.loader.dataset_woz import DatasetWoz, SimpleDatasetWoz
 from convlab2.nlg.sclstm.model.lm_deep import LMDeep
 
 USE_CUDA = torch.cuda.is_available()

@@ -1,5 +1,5 @@
 """
-Evaluate NLG models on utterances of Multiwoz_zh test dataset
+Evaluate NLG models on utterances of CrossWOZ test dataset
 Metric: dataset level BLEU-4, slot error rate
 Usage: python evaluate.py [usr|sys|all]
 """

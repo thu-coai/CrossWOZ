@@ -1,7 +1,6 @@
 import json
 import random
 import sys
-import re
 
 import torch
 from torch.autograd import Variable
@@ -19,8 +18,6 @@ class DatasetWoz(object):
         dataSplit_file = config['DATA']['dataSplit_file']
         vocab_file = config['DATA']['vocab_file']
         template_file = config['DATA']['template_file']
-        # wordvec_file = config['DATA']['wordvec_file']
-
         self.template = template_file  # for further scoring
         self.USE_CUDA = use_cuda
 
@@ -34,9 +31,6 @@ class DatasetWoz(object):
 
         # load vocab from file
         self._loadVocab(vocab_file)  # a list of vocab, andy
-
-        # load word vectors from file
-        # self._loadWordVec(wordvec_file)
 
         # set input feature cardinality
         self._setCardinality(template_file)
@@ -54,10 +48,9 @@ class DatasetWoz(object):
             random.shuffle(self.data['train'])
 
     def next_batch(self, data_type='train'):
-        # for multi_woz_zh:
         def indexes_from_sentence(sentence, add_eos=False):
             indexes = [self.word2index[word] if word in self.word2index else self.word2index['UNK_token'] for word in
-                       re.split(r'\s+', sentence) if word]
+                       sentence.split(' ')]
             if add_eos:
                 return indexes + [self.word2index['EOS_token']]
             else:
