@@ -28,7 +28,6 @@ class RuleDST(DST):
         :param usr_da:
         :return:
         """
-        self.state['user_action'] = usr_da
         sys_da = self.state['system_action']
 
         select_domains = Counter([x[1] for x in usr_da if x[0] == 'Select'])

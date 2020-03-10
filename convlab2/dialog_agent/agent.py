@@ -81,27 +81,34 @@ class PipelineAgent(Agent):
                 The natural langauge generator module of agent.
         """
         super(PipelineAgent, self).__init__(name=name)
+        assert self.name in ['user', 'sys']
+        self.opponent_name = 'user' if self.name is 'sys' else 'sys'
         self.nlu = nlu
         self.dst = dst
         self.policy = policy
         self.nlg = nlg
-        self.history = []
         self.init_session()
 
     def response(self, observation):
         """Generate agent response using the agent modules."""
         if self.dst is not None:
-            self.dst.state['history'].append(['opponent', observation])
-        self.history.append(['opponent', observation])
+            self.dst.state['history'].append([self.opponent_name, observation]) # [['sys', sys_utt], ['user', user_utt],...]
         # print(observation)
         # get dialog act
         if self.nlu is not None:
-            self.input_action = self.nlu.predict(observation, context=[x[1] for x in self.history[:-1]])
+            if self.dst is not None:
+                self.input_action = self.nlu.predict(observation, context=[x[1] for x in self.dst.state['history'][:-1]])
+            else:
+                self.input_action = self.nlu.predict(observation)
         else:
             self.input_action = observation
         # print(self.input_action)
         # get state
         if self.dst is not None:
+            if self.name is 'sys':
+                self.dst.state['user_action'] = self.input_action
+            else:
+                self.dst.state['system_action'] = self.input_action
             state = self.dst.update(self.input_action)
         else:
             state = self.input_action
@@ -117,7 +124,10 @@ class PipelineAgent(Agent):
         # print(model_response)
         if self.dst is not None:
             self.dst.state['history'].append([self.name, model_response])
-        self.history.append([self.name, observation])
+            if self.name is 'sys':
+                self.dst.state['system_action'] = self.output_action
+            else:
+                self.dst.state['user_action'] = self.output_action
         return model_response
 
     def is_terminated(self):
@@ -136,6 +146,8 @@ class PipelineAgent(Agent):
             self.nlu.init_session()
         if self.dst is not None:
             self.dst.init_session()
+            if self.name == 'sys':
+                self.dst.state['history'].append([self.name, ''])
         if self.policy is not None:
             self.policy.init_session()
         if self.nlg is not None:
