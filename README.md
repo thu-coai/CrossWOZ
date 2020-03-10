@@ -8,7 +8,7 @@ If you have any question, feel free to open an issue.
 
 ## Data
 
-An example: (Names of hotels are replaced by A,B,C for simplicity.)
+A piece of dialogue: (Names of hotels are replaced by A,B,C for simplicity.)
 
 ![example](example.png)
 
