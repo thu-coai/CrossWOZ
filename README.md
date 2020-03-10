@@ -27,10 +27,10 @@ In `data/crosswoz` directory. Data statistics:
 According to the type of user goal, we group the dialogues in the **training set** into five categories:
 
 - **S**: 417 dialogues have only one sub-goal in HAR domains.
-- **M**: 1573 dialogues have multiple sub-goals (2$\sim$3) in HAR domains. However, these sub-goals do not have cross-domain informable slots.
-- **M+T**: 691 dialogues have multiple sub-goals in HAR domains and at least one sub-goal in the metro or taxi domain (3$\sim$5 sub-goals). The sub-goals in HAR domains do not have cross-domain informable slots.
-- **CM**: 1,759 dialogues have multiple sub-goals (2$\sim$5) in HAR domains with cross-domain informable slots.
-- **CM+T**: 572 dialogues have multiple sub-goals in HAR domains with cross-domain informable slots and at least one sub-goal in the metro or taxi domain (3$\sim$5 sub-goals).
+- **M**: 1573 dialogues have multiple sub-goals (2-3) in HAR domains. However, these sub-goals do not have cross-domain informable slots.
+- **M+T**: 691 dialogues have multiple sub-goals in HAR domains and at least one sub-goal in the metro or taxi domain (3-5 sub-goals). The sub-goals in HAR domains do not have cross-domain informable slots.
+- **CM**: 1,759 dialogues have multiple sub-goals (2-5) in HAR domains with cross-domain informable slots.
+- **CM+T**: 572 dialogues have multiple sub-goals in HAR domains with cross-domain informable slots and at least one sub-goal in the metro or taxi domain (3-5 sub-goals).
 
 Statistics for dialogues of different goal types in the training set:
 
