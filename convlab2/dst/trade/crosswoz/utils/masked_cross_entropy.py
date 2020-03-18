@@ -1,7 +1,7 @@
 import torch
 from torch.nn import functional
 from torch.autograd import Variable
-from utils.config import *
+from convlab2.dst.trade.crosswoz.utils.config import *
 import torch.nn as nn
 import numpy as np
 

@@ -239,7 +239,7 @@ def convert(name, item, mode):
             'dialogue': turns
         }
         data.append(sess)
-    # save
+    # model
     print(f'all_domains: {list(all_domains)}')
     if mode == 'init':
         json.dump(data, open(join(crosswoz_path, f'{item}_dials.json'), 'w+'), ensure_ascii=False, indent=2)
@@ -502,6 +502,9 @@ def type_filter(data, tpe, original_data):
         if sess_type == real_type:
             filtered_data[sess_id] = copy.deepcopy(data[sess_id])
     return filtered_data
+
+
+
 
 if __name__ == '__main__':
     # print(sentseg("江州市长江大桥参加了长江大桥的通车仪式"))

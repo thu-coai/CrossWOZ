@@ -487,7 +487,7 @@ def divideData(data):
 
     print("# of dialogues: Train {}, Val {}, Test {}".format(count_train, count_val, count_test))
 
-    # save all dialogues
+    # model all dialogues
     with open('data/dev_dials.json', 'w') as f:
         json.dump(val_dials, f, indent=4)
 

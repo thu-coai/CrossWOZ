@@ -50,7 +50,9 @@ setup(
         'requests',
         'simplejson',
         'unidecode',
-        'jieba'
+        'jieba',
+        'embeddings',
+        'quadprog'
     ],
     extras_require={
         'develop': [

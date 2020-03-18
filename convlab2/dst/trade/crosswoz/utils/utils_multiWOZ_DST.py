@@ -10,7 +10,7 @@ import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from utils.config import *
+from convlab2.dst.trade.crosswoz.utils.config import *
 import ast
 from collections import Counter
 from collections import OrderedDict
@@ -19,8 +19,8 @@ from tqdm import tqdm
 import os
 import pickle
 from random import shuffle
-from cnembedding import CNEmbedding
-from utils.config import MODE, data_version
+from convlab2.dst.trade.crosswoz.cnembedding import CNEmbedding
+from convlab2.dst.trade.crosswoz.utils.config import MODE, data_version
 
 from .fix_label import *
 
@@ -142,6 +142,9 @@ class Dataset(data.Dataset):
             domains = {"attraction":0, "restaurant":1, "taxi":2, "train":3, "hotel":4, "hospital":5, "bus":6, "police":7}
         else:
             domains = {'餐馆': 0, '地铁': 1, '出租': 2, '酒店': 3, 'bye': 4, '景点': 5, 'greet': 6}
+        if turn_domain not in domains:
+            key = list(domains.keys())[0]
+            return domains[key]
         return domains[turn_domain]
 
 
@@ -220,10 +223,10 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
     print(("Reading from {}".format(file_name)))
     data = []
     max_resp_len, max_value_len = 0, 0
-    domain_counter = {} 
+    domain_counter = {}
     with open(file_name) as f:
         dials = json.load(f)
-        # create vocab first 
+        # create vocab first
         for dial_dict in dials:
             if (args["all_vocab"] or dataset=="train") and training:
                 for ti, turn in enumerate(dial_dict["dialogue"]):
@@ -233,7 +236,7 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
         if training and dataset=="train" and args["data_ratio"]!=100:
             random.Random(10).shuffle(dials)
             dials = dials[:int(len(dials)*0.01*args["data_ratio"])]
-        
+
         cnt_lin = 1
         for dial_dict in dials:
             dialog_history = ""
@@ -250,7 +253,7 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
             if args["only_domain"] != "" and args["only_domain"] not in dial_dict["domains"]:
                 continue
             if (args["except_domain"] != "" and dataset == "test" and args["except_domain"] not in dial_dict["domains"]) or \
-               (args["except_domain"] != "" and dataset != "test" and [args["except_domain"]] == dial_dict["domains"]): 
+               (args["except_domain"] != "" and dataset != "test" and [args["except_domain"]] == dial_dict["domains"]):
                 continue
 
             # Reading data
@@ -288,7 +291,7 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
                 class_label, generate_y, slot_mask, gating_label  = [], [], [], []
                 start_ptr_label, end_ptr_label = [], []
                 for slot in slot_temp:
-                    if slot in turn_belief_dict.keys(): 
+                    if slot in turn_belief_dict.keys():
                         generate_y.append(turn_belief_dict[slot])
 
                         if turn_belief_dict[slot] == "dontcare":
@@ -307,21 +310,21 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
 
                 # 可以根据ID和turn_idx将内容复原
                 data_detail = {
-                    "ID":dial_dict["dialogue_idx"], 
-                    "domains":dial_dict["domains"], 
+                    "ID":dial_dict["dialogue_idx"],
+                    "domains":dial_dict["domains"],
                     "turn_domain":turn_domain,
-                    "turn_id":turn_id, 
-                    "dialog_history":source_text, 
+                    "turn_id":turn_id,
+                    "dialog_history":source_text,
                     "turn_belief":turn_belief_list,
-                    "gating_label":gating_label, 
-                    "turn_uttr":turn_uttr_strip, 
+                    "gating_label":gating_label,
+                    "turn_uttr":turn_uttr_strip,
                     'generate_y':generate_y
                     }
                 data.append(data_detail)
-                
+
                 if max_resp_len < len(source_text.split()):
                     max_resp_len = len(source_text.split())
-                
+
             cnt_lin += 1
             if(max_line and cnt_lin>=max_line):
                 break
@@ -332,6 +335,126 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
             mem_lang.index_words("t{}".format(time_i), 'utter')
 
     print("domain_counter", domain_counter)
+    return data, max_resp_len, slot_temp
+
+
+def read_langs2(source_text, utterance, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity, training, max_line=None):
+    data = []
+    max_resp_len, max_value_len = 0, 0
+    domain_counter = {}
+    if 1 == 1:
+        # dials = json.load(f)
+        dials = []
+        # create vocab first
+        for dial_dict in dials:
+            if (args["all_vocab"] or dataset == "train") and training:
+                assert True == False
+                for ti, turn in enumerate(dial_dict["dialogue"]):
+                    lang.index_words(turn["system_transcript"], 'utter')
+                    lang.index_words(turn["transcript"], 'utter')
+        # determine training data ratio, default is 100%
+        if training and dataset == "train" and args["data_ratio"] != 100:
+            random.Random(10).shuffle(dials)
+            dials = dials[:int(len(dials) * 0.01 * args["data_ratio"])]
+
+        cnt_lin = 1
+        for dial_dict in ['placeholder']:
+            dialog_history = source_text
+            last_belief_dict = {}
+            # Filtering and counting domains
+            # for domain in dial_dict["domains"]:
+            #     if domain not in EXPERIMENT_DOMAINS:
+            #         continue
+            #     if domain not in domain_counter.keys():
+            #         domain_counter[domain] = 0
+            #     domain_counter[domain] += 1
+
+            # Unseen domain setting
+            # if args["only_domain"] != "" and args["only_domain"] not in dial_dict["domains"]:
+            #     continue
+            # if (args["except_domain"] != "" and dataset == "test" and args["except_domain"] not in dial_dict[
+            #     "domains"]) or \
+            #         (args["except_domain"] != "" and dataset != "test" and [args["except_domain"]] == dial_dict[
+            #             "domains"]):
+            #     continue
+
+            # Reading data
+            for ti, turn in enumerate(['placeholder']):
+                turn_domain = ''
+                turn_id = '0'
+                turn_uttr = utterance
+                turn_uttr_strip = turn_uttr.strip()
+                dialog_history += source_text
+                source_text = dialog_history.strip()
+                turn_belief_dict = {}
+
+                # Generate domain-dependent slot list
+                slot_temp = SLOTS
+                # if dataset == "test":
+                #     if args["except_domain"] != "":
+                #         slot_temp = [k for k in SLOTS if args["except_domain"] in k]
+                #         turn_belief_dict = OrderedDict(
+                #             [(k, v) for k, v in turn_belief_dict.items() if args["except_domain"] in k])
+                #     elif args["only_domain"] != "":
+                #         slot_temp = [k for k in SLOTS if args["only_domain"] in k]
+                #         turn_belief_dict = OrderedDict(
+                #             [(k, v) for k, v in turn_belief_dict.items() if args["only_domain"] in k])
+
+                # turn_belief_list = [str(k) + '-' + str(v) for k, v in turn_belief_dict.items()]
+                turn_belief_list = []
+
+                # if (args["all_vocab"] or dataset == "train") and training:
+                #     mem_lang.index_words(turn_belief_dict, 'belief')
+
+                class_label, generate_y, slot_mask, gating_label = [], [], [], []
+                start_ptr_label, end_ptr_label = [], []
+                # for slot in slot_temp:
+                #     if slot in turn_belief_dict.keys():
+                #         generate_y.append(turn_belief_dict[slot])
+                #
+                #         if turn_belief_dict[slot] == "dontcare":
+                #             gating_label.append(gating_dict["dontcare"])
+                #         elif turn_belief_dict[slot] == "none":
+                #             gating_label.append(gating_dict["none"])
+                #         else:
+                #             gating_label.append(gating_dict["ptr"])
+                #
+                #         if max_value_len < len(turn_belief_dict[slot]):
+                #             max_value_len = len(turn_belief_dict[slot])
+                #
+                #     else:
+                #         generate_y.append("none")
+                #         gating_label.append(gating_dict["none"])
+                gating_label = [2] * 80
+                generate_y = ['none'] * 80
+
+                # 可以根据ID和turn_idx将内容复原
+                data_detail = {
+                    "ID": "0",
+                    "domains": [],
+                    "turn_domain": "",
+                    "turn_id": 0,
+                    "dialog_history": source_text,
+                    "turn_belief": [],
+                    "gating_label": gating_label,
+                    "turn_uttr": turn_uttr_strip,
+                    'generate_y': generate_y
+                }
+                data.append(data_detail)
+
+                if max_resp_len < len(source_text.split()):
+                    max_resp_len = len(source_text.split())
+
+            cnt_lin += 1
+            if (max_line and cnt_lin >= max_line):
+                break
+
+    # add t{} to the lang file
+    # if "t{}".format(max_value_len - 1) not in mem_lang.word2index.keys() and training:
+    #     for time_i in range(max_value_len):
+    #         mem_lang.index_words("t{}".format(time_i), 'utter')
+
+    # print("domain_counter", domain_counter)
     return data, max_resp_len, slot_temp
 
 
@@ -406,7 +529,7 @@ def prepare_data_seq(training, task="dst", sequicity=0, batch_size=100):
     if args['path']:
         folder_name = args['path'].rsplit('/', 2)[0] + '/'
     else:
-        folder_name = 'save/{}-'.format(args["decoder"])+args["addName"]+args['dataset']+str(args['task'])+'/'
+        folder_name = 'model/{}-'.format(args["decoder"])+args["addName"]+args['dataset']+str(args['task'])+'/'
     print("folder_name", folder_name)
     if not os.path.exists(folder_name): 
         os.makedirs(folder_name)
@@ -481,30 +604,34 @@ def prepare_data_seq(training, task="dst", sequicity=0, batch_size=100):
     return train, dev, test, test_4d, LANG, SLOTS_LIST, gating_dict, nb_train_vocab
 
 def prepare_data_seq_cn(training, task="dst", sequicity=0, batch_size=100):
+    # training = True
+    model_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     eval_batch = args["eval_batch"] if args["eval_batch"] else batch_size
     # for sys_state_init
     if data_version == 'init':
-        file_train = 'data/crosswoz/train_dials.json'
-        file_dev = 'data/crosswoz/dev_dials.json'
-        file_test = 'data/crosswoz/test_dials.json'
+        file_train = model_root + '/data/crosswoz/train_dials.json'
+        file_dev = model_root + '/data/crosswoz/dev_dials.json'
+        file_test = model_root + '/data/crosswoz/test_dials.json'
     # # for sys_state
     else:
-        file_train = 'data/crosswoz/train_dials_processed.json'
-        file_dev = 'data/crosswoz/dev_dials_processed.json'
-        file_test = 'data/crosswoz/test_dials_processed.json'
+        file_train = model_root + '/data/crosswoz/train_dials_processed.json'
+        file_dev = model_root + '/data/crosswoz/dev_dials_processed.json'
+        file_test = model_root + '/data/crosswoz/test_dials_processed.json'
     # Create saving folder
     if args['path']:
         folder_name = '/'.join(args['path'].rsplit('/', 2)[:2]) + '/'
     else:
         if data_version == 'init':
-            folder_name = 'save_cn/{}-'.format(args["decoder"])+args["addName"]+args['dataset']+str(args['task'])+'/'
+            folder_name = 'model/{}-'.format(args["decoder"])+args["addName"]+args['dataset']+str(args['task'])+'/'
         else:
             folder_name = 'save_cn_processed/{}-'.format(args["decoder"]) + args["addName"] + args['dataset']+str(args['task']) + '/'
+    folder_name = os.path.join(model_root, folder_name)
     print("folder_name", folder_name)
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
     # load domain-slot pairs from ontology
-    ontology = json.load(open("data/crosswoz/ontology.json", 'r'))
+    ontology = json.load(open(model_root + "/data/crosswoz/ontology.json", 'r'))
     ALL_SLOTS = get_slot_information(ontology)
     gating_dict = {"ptr":0, "dontcare":1, "none":2}
     # Vocabulary
@@ -515,6 +642,7 @@ def prepare_data_seq_cn(training, task="dst", sequicity=0, batch_size=100):
     mem_lang_name = 'mem-lang-all.pkl' if args["all_vocab"] else 'mem-lang-train.pkl'
 
     if training:
+    # if True:
         pair_train, train_max_len, slot_train = read_langs(file_train, gating_dict, ALL_SLOTS, "train", lang, mem_lang, sequicity, training)
         train = get_seq(pair_train, lang, mem_lang, batch_size, True, sequicity)
         nb_train_vocab = lang.n_words
@@ -572,6 +700,81 @@ def prepare_data_seq_cn(training, task="dst", sequicity=0, batch_size=100):
     print(SLOTS_LIST[3])
     LANG = [lang, mem_lang]
     return train, dev, test, test_4d, LANG, SLOTS_LIST, gating_dict, nb_train_vocab
+
+
+def prepare_data_seq_cn2(training, task="dst", sequicity=0, batch_size=100, source_text='', curr_utterance=''):
+    training = False
+    eval_batch = args["eval_batch"] if args["eval_batch"] else batch_size
+    root_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    # for sys_state_init
+    if data_version == 'init':
+        file_train = root_path + '/data/crosswoz/train_dials.json'
+        file_dev = root_path + '/data/crosswoz/dev_dials.json'
+        file_test = root_path + '/data/crosswoz/test_dials.json'
+    # # for sys_state
+    else:
+        file_train = root_path + '/data/crosswoz/train_dials_processed.json'
+        file_dev = root_path + '/data/crosswoz/dev_dials_processed.json'
+        file_test = root_path + '/data/crosswoz/test_dials_processed.json'
+    # Create saving folder
+    if args['path']:
+        folder_name = '/'.join(args['path'].rsplit('/', 2)[:2]) + '/'
+    else:
+        if data_version == 'init':
+            folder_name = 'save_cn/{}-'.format(args["decoder"])+args["addName"]+args['dataset']+str(args['task'])+'/'
+        else:
+            folder_name = 'save_cn_processed/{}-'.format(args["decoder"]) + args["addName"] + args['dataset']+str(args['task']) + '/'
+    folder_name = root_path + '/' + folder_name
+    print("folder_name", folder_name)
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+    # load domain-slot pairs from ontology
+    ontology = json.load(open(root_path + "/data/crosswoz/ontology.json", 'r'))
+    ALL_SLOTS = get_slot_information(ontology)
+    gating_dict = {"ptr":0, "dontcare":1, "none":2}
+    # Vocabulary
+    lang, mem_lang = Lang(), Lang()
+    lang.index_words(ALL_SLOTS, 'slot')
+    mem_lang.index_words(ALL_SLOTS, 'slot')
+    lang_name = 'lang-all.pkl' if args["all_vocab"] else 'lang-train.pkl'
+    mem_lang_name = 'mem-lang-all.pkl' if args["all_vocab"] else 'mem-lang-train.pkl'
+
+    if not training:
+        with open(folder_name+lang_name, 'rb') as handle:
+            lang = pickle.load(handle)
+        with open(folder_name+mem_lang_name, 'rb') as handle:
+            mem_lang = pickle.load(handle)
+
+        pair_train, train_max_len, slot_train, train, nb_train_vocab = [], 0, {}, [], 0
+        # pair_dev, dev_max_len, slot_dev = read_langs(file_dev, gating_dict, ALL_SLOTS, "dev", lang, mem_lang, sequicity, training)
+        # dev   = get_seq(pair_dev, lang, mem_lang, eval_batch, False, sequicity)
+        utterance = curr_utterance
+        if source_text == '':
+            source_text = "; " + utterance.strip() + " ;"
+        pair_test, test_max_len, slot_test = read_langs2(source_text, utterance, gating_dict, ALL_SLOTS, "test", lang, mem_lang, sequicity, training)
+        test  = get_seq(pair_test, lang, mem_lang, eval_batch, False, sequicity)
+
+    test_4d = []
+    if args['except_domain']!="":
+        pair_test_4d, _, _ = read_langs(file_test, gating_dict, ALL_SLOTS, "dev", lang, mem_lang, sequicity, training)
+        test_4d  = get_seq(pair_test_4d, lang, mem_lang, eval_batch, False, sequicity)
+
+    max_word = max(test_max_len, -1) + 1
+
+    # print("Read %s pairs train" % len(pair_train))
+    # print("Read %s pairs dev" % len(pair_dev))
+    # print("Read %s pairs test" % len(pair_test))
+    # print("Vocab_size: %s " % lang.n_words)
+    # print("Vocab_size Training %s" % nb_train_vocab )
+    # print("Vocab_size Belief %s" % mem_lang.n_words )
+    # print("Max. length of dialog words for RNN: %s " % max_word)
+    # print("USE_CUDA={}".format(USE_CUDA))
+
+    SLOTS_LIST = [ALL_SLOTS, [], [], slot_test]
+    print("[Test Set Slots]: Number is {} in total".format(str(len(SLOTS_LIST[3]))))
+    print(SLOTS_LIST[3])
+    LANG = [lang, mem_lang]
+    return None, None, test, test_4d, LANG, SLOTS_LIST, gating_dict, nb_train_vocab
 
 
 class ImbalancedDatasetSampler(torch.utils.data.sampler.Sampler):

@@ -12,7 +12,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 from torch import optim
 import torch.nn.functional as F
-from utils.config import *
+from convlab2.dst.trade.crosswoz.utils.config import *
 import logging 
 import datetime
 

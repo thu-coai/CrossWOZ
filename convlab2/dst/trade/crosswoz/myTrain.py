@@ -1,11 +1,11 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
-from .utils.config import MODE
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+from convlab2.dst.trade.crosswoz.utils.config import MODE
 from tqdm import tqdm
 import torch.nn as nn
 
-from .utils.config import *
-from .models.TRADE import *
+from convlab2.dst.trade.crosswoz.utils.config import *
+from convlab2.dst.trade.crosswoz.models.TRADE import *
 
 '''
 python myTrain.py -dec= -bsz= -hdd= -dr= -lr=
@@ -15,7 +15,7 @@ python myTrain.py -dec= -bsz= -hdd= -dr= -lr=
 early_stop = args['earlyStop']
 
 if args['dataset']=='multiwoz':
-    from .utils.utils_multiWOZ_DST import *
+    from convlab2.dst.trade.crosswoz.utils.utils_multiWOZ_DST import *
     early_stop = None
 else:
     print("You need to provide the --dataset information")
@@ -32,9 +32,7 @@ else:
 model = globals()[args['decoder']](
     hidden_size=int(args['hidden']), 
     lang=lang, 
-    # path='save_cn/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.1442',
-    path='save_cn_processed/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.1535',
-    # path=args['path'],
+    path=args['path'],
     task=args['task'], 
     lr=float(args['learn']), 
     dropout=float(args['drop']),

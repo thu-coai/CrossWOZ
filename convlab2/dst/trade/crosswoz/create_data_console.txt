@@ -1,5 +1,0 @@
-$ python create_data.py
-Create WOZ-like dialogues. Get yourself a coffee, this might take a while.
-Downloading and unzipping the MultiWOZ dataset
-Divide dialogues...
-# of dialogues: Train 8420, Val 1000, Test 999

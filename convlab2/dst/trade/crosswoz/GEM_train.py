@@ -1,5 +1,5 @@
-from .utils.config import *
-from .models.TRADE import *
+from convlab2.dst.trade.crosswoz.utils.config import *
+from convlab2.dst.trade.crosswoz.models.TRADE import *
 import numpy as np
 import torch
 import torch.nn as nn
@@ -81,7 +81,7 @@ args["decoder"] = "TRADE"
 args["HDD"] = HDD
 
 if args['dataset']=='multiwoz':
-    from .utils.utils_multiWOZ_DST import *
+    from utils.utils_multiWOZ_DST import *
 else:
     print("You need to provide the --dataset information")
 

@@ -10,7 +10,7 @@ EOS_token = 2
 UNK_token = 0
 
 MODE = 'cn'
-data_version = 'processed'  # processed
+data_version = 'init'  # processed
 
 if torch.cuda.is_available():
     USE_CUDA = True
@@ -24,8 +24,7 @@ parser = argparse.ArgumentParser(description='TRADE Multi-Domain DST')
 # Training Setting
 parser.add_argument('-ds','--dataset', help='dataset', required=False, default="multiwoz")
 parser.add_argument('-t','--task', help='Task Number', required=False, default="dst")
-parser.add_argument('-path','--path', help='path of the file to load', required=False)
-parser.add_argument('-model_path','--path', help='path of the file to load', required=False, default='s3://tatk-data/trade_crosswoz_model.zip')
+parser.add_argument('-path','--path', help='path of the file to load', required=False, default='model/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.3228')
 parser.add_argument('-sample','--sample', help='Number of Samples', required=False,default=None)
 parser.add_argument('-patience','--patience', help='', required=False, default=6, type=int)
 parser.add_argument('-es','--earlyStop', help='Early Stop Criteria, BLEU or ENTF1', required=False, default='BLEU')
@@ -38,10 +37,10 @@ parser.add_argument('-bsz','--batch', help='Batch_size', required=False, type=in
 # Testing Setting
 parser.add_argument('-rundev','--run_dev_testing', help='', required=False, default=0, type=int)
 parser.add_argument('-viz','--vizualization', help='vizualization', type=int, required=False, default=0)
-## save predictions
+## model predictions
 parser.add_argument('-gs','--genSample', help='Generate Sample', type=int, required=False, default=0)  #### change this when testing
 parser.add_argument('-evalp','--evalp', help='evaluation period', required=False, default=1)
-parser.add_argument('-an','--addName', help='An add name for the save folder', required=False, default='')
+parser.add_argument('-an','--addName', help='An add name for the model folder', required=False, default='')
 parser.add_argument('-eb','--eval_batch', help='Evaluation Batch_size', required=False, type=int, default=0)
 
 # Model architecture
@@ -71,7 +70,7 @@ parser.add_argument('-exceptd','--except_domain', help='', required=False, defau
 parser.add_argument('-onlyd','--only_domain', help='', required=False, default="", type=str)
 
 
-args = vars(parser.parse_args())
+args = vars(parser.parse_known_args()[0])
 if args["load_embedding"]:
     # args["hidden"] = 400
     args["hidden"] = 300 if MODE == 'en' else 100
