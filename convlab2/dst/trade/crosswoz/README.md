@@ -6,7 +6,7 @@ on the CrossWOZ dataset.
 ## Example usage
 To run an example, you can jump into convlab2/dst/trade/crosswoz, and run the following command:
 ```bash
-$ python demo.py -path=model/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.3228
+$ python demo.py
 ```
 The path in the example is our proposed pre-trained model of TRADE, which will
 be downloaded automatically at runtime.
@@ -16,8 +16,9 @@ You can also run you own model by specifying the path parameter.
 ## Train
 To train a model from scratch, jump into convlab/dst/trade/crosswoz, and run the following command:
 ```bash
-$ python myTrain.py -dec=TRADE -bsz=4 -dr=0.2 -lr=0.001 -le=1
+$ python train.py
 ```
+Note that the training data will be download automatically.
 
 ## Evaluation
 To evaluate the model on the test set of CrossWOZ, you can jump into convlab/dst/trade/crosswoz, and then run the following command:

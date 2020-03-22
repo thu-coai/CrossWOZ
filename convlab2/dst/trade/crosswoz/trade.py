@@ -128,6 +128,7 @@ class CrossWOZTRADE(TRADE, nn.Module):
                 raise e
             shutil.copyfile(os.path.join(model_dir, target_file), zip_file_path)
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+            print('unzipping model file ...')
             zip_ref.extractall(model_dir)
 
     def download_data(self, data_url="https://convlab.blob.core.windows.net/convlab-2/trade_crosswoz_data.zip"):
@@ -154,6 +155,7 @@ class CrossWOZTRADE(TRADE, nn.Module):
                 raise e
             shutil.copyfile(os.path.join(data_dir, target_file), zip_file_path)
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+            print('unzipping data file ...')
             zip_ref.extractall(data_dir)
 
     def print_loss(self):
@@ -370,11 +372,10 @@ class CrossWOZTRADE(TRADE, nn.Module):
         # Set to not-training mode to disable dropout
         self.encoder.train(False)
         self.decoder.train(False)
-        print("STARTING EVALUATION")
         all_prediction = {}
         inverse_unpoint_slot = dict([(v, k) for k, v in self.gating_dict.items()])
-        pbar = tqdm(enumerate(dev), total=len(dev))
-        for j, data_dev in pbar:
+        # pbar = tqdm(enumerate(dev), total=len(dev))
+        for j, data_dev in enumerate(dev):
             # if MODE == 'cn' and j >= 450:
             #     break
             # Encode and Decode

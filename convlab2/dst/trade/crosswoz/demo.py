@@ -5,12 +5,11 @@ from convlab2.dst.trade.crosswoz.utils.config import *
 from convlab2.dst.trade.crosswoz.trade import *
 
 '''
-python demo.py -ds= -path= -bsz=
-
-e.g.
-    python demo.py -path=model/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.3228
+    python demo.py
 '''
 
+# specify model path
+args['path'] = 'model/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.3228'
 model = CrossWOZTRADE(args['path'])
 
 

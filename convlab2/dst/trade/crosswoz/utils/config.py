@@ -24,7 +24,7 @@ parser = argparse.ArgumentParser(description='TRADE Multi-Domain DST')
 # Training Setting
 parser.add_argument('-ds','--dataset', help='dataset', required=False, default="multiwoz")
 parser.add_argument('-t','--task', help='Task Number', required=False, default="dst")
-parser.add_argument('-path','--path', help='path of the file to load', required=False, default='model/TRADE-multiwozdst/HDD100BSZ4DR0.2ACC-0.3228')
+parser.add_argument('-path','--path', help='path of the file to load', required=False)
 parser.add_argument('-sample','--sample', help='Number of Samples', required=False,default=None)
 parser.add_argument('-patience','--patience', help='', required=False, default=6, type=int)
 parser.add_argument('-es','--earlyStop', help='Early Stop Criteria, BLEU or ENTF1', required=False, default='BLEU')
@@ -51,7 +51,7 @@ parser.add_argument('-paral','--parallel_decode', help='', required=False, defau
 
 # Model Hyper-Parameters
 parser.add_argument('-dec','--decoder', help='decoder model', required=False)
-parser.add_argument('-hdd','--hidden', help='Hidden size', required=False, type=int, default=400)
+parser.add_argument('-hdd','--hidden', help='Hidden size', required=False, type=int, default=100)
 parser.add_argument('-lr','--learn', help='Learning Rate', required=False, type=float)
 parser.add_argument('-dr','--drop', help='Drop Out', required=False, type=float)
 parser.add_argument('-lm','--limit', help='Word Limit', required=False,default=-10000)
@@ -70,19 +70,13 @@ parser.add_argument('-exceptd','--except_domain', help='', required=False, defau
 parser.add_argument('-onlyd','--only_domain', help='', required=False, default="", type=str)
 
 
-args = vars(parser.parse_known_args()[0])
+args = vars(parser.parse_known_args(args=[])[0])
 if args["load_embedding"]:
-    # args["hidden"] = 400
-    args["hidden"] = 300 if MODE == 'en' else 100
-    # args["hidden"] = 100
-    print("[Warning] Using hidden size = 400 for pretrained word embedding (300 + 100)...")
+    args["hidden"] = 100
 if args["fix_embedding"]:
     args["addName"] += "FixEmb"
 if args["except_domain"] != "":
     args["addName"] += "Except"+args["except_domain"]
 if args["only_domain"] != "":
     args["addName"] += "Only"+args["only_domain"]
-
-print(str(args))
-
 
