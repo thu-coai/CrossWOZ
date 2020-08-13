@@ -3,6 +3,7 @@ setup.py for ConvLab-2
 '''
 import sys
 import os
+from typing import List
 from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 
@@ -13,6 +14,18 @@ class LibTest(TestCommand):
         # import here, cause outside the eggs aren't loaded
         ret = os.system("pytest --cov=ConvLab-2 tests/ --cov-report term-missing")
         sys.exit(ret >> 8)
+
+
+def read_requirements(require_file: str = './requirements.txt') -> List[str]:
+    """read the dependency requirements from the file
+
+    Returns:
+        List[str]: the list of dependency packages
+    """
+    if not os.path.exists(require_file):
+        raise FileNotFoundError(f'{require_file} file not found')
+    with open(require_file, 'r+') as f:
+        return list(f.readlines())
 
 setup(
     name='ConvLab-2',
@@ -30,42 +43,9 @@ setup(
                 'Intended Audience :: Science/Research',
                 'Topic :: Scientific/Engineering :: Artificial Intelligence',
     ],
-    install_requires=[
-        'nltk>=3.4',
-        'tqdm>=4.30',
-        'checksumdir>=1.1',
-        'visdom',
-        'Pillow',
-        'future',
-        'torch',
-        'numpy>=1.15.0',
-        'scipy',
-        'scikit-learn==0.20.3',
-        'pytorch-pretrained-bert>=0.6.1',
-        'transformers>=2.3.0',
-        'tensorflow==1.14',
-        'tensorboard>=1.14.0',
-        'tensorboardX==1.7',
-        'allennlp',
-        'requests',
-        'simplejson',
-        'unidecode',
-        'jieba',
-        'embeddings',
-        'quadprog'
-    ],
+    install_requires=read_requirements(),
     extras_require={
-        'develop': [
-            "python-coveralls",
-            "pytest-dependency",
-            "pytest-mock",
-            "requests-mock",
-            "pytest>=3.6.0",
-            "pytest-cov==2.4.0",
-            "checksumdir",
-            "bs4",
-            "lxml",
-        ]
+        'develop': read_requirements('./requirements-dev.txt')
     },
     cmdclass={'test': LibTest},
     entry_points={
