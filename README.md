@@ -50,7 +50,7 @@ We also provide database in `data/crosswoz/database`.
 
 ## Code
 
-please install ConvLab-2 first (note that this is a minimum version for CrossWOZ and ConvLab-2 will be officially released soon):
+please install [ConvLab-2](https://github.com/thu-coai/Convlab-2) first. The code and data are also available in ConvLab-2 repo. This repo is a minimum version for CrossWOZ.
 
 ```
 pip install -e .
