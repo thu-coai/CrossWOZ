@@ -235,7 +235,6 @@ class TRADE(nn.Module):
                             predict_belief_bsz_ptr.append(slot_temp[si] + "-" + str(st))
 
                 all_prediction[data_dev["ID"][bi]][data_dev["turn_id"][bi]]["pred_bs_ptr"] = predict_belief_bsz_ptr
-                return predict_belief_bsz_ptr
 
                 if set(data_dev["turn_belief"][bi]) != set(predict_belief_bsz_ptr) and args["genSample"]:
                     print("True", set(data_dev["turn_belief"][bi]))
