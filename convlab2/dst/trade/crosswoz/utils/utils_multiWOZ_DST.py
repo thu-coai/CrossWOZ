@@ -294,9 +294,7 @@ def read_langs(file_name, gating_dict, SLOTS, dataset, lang, mem_lang, sequicity
                     if slot in turn_belief_dict.keys():
                         generate_y.append(turn_belief_dict[slot])
 
-                        if turn_belief_dict[slot] == "dontcare":
-                            gating_label.append(gating_dict["dontcare"])
-                        elif turn_belief_dict[slot] == "none":
+                        if turn_belief_dict[slot] == "none":
                             gating_label.append(gating_dict["none"])
                         else:
                             gating_label.append(gating_dict["ptr"])
@@ -536,7 +534,7 @@ def prepare_data_seq(training, task="dst", sequicity=0, batch_size=100):
     # load domain-slot pairs from ontology
     ontology = json.load(open("data/multi-woz/MULTIWOZ2 2/ontology.json", 'r'))
     ALL_SLOTS = get_slot_information(ontology)
-    gating_dict = {"ptr":0, "dontcare":1, "none":2}
+    gating_dict = {"ptr":0, "none":1}
     # Vocabulary
     lang, mem_lang = Lang(), Lang()
     lang.index_words(ALL_SLOTS, 'slot')
@@ -633,7 +631,7 @@ def prepare_data_seq_cn(training, task="dst", sequicity=0, batch_size=100):
     # load domain-slot pairs from ontology
     ontology = json.load(open(model_root + "/data/crosswoz/ontology.json", 'r'))
     ALL_SLOTS = get_slot_information(ontology)
-    gating_dict = {"ptr":0, "dontcare":1, "none":2}
+    gating_dict = {"ptr":0, "none":1}
     # Vocabulary
     lang, mem_lang = Lang(), Lang()
     lang.index_words(ALL_SLOTS, 'slot')
@@ -731,7 +729,7 @@ def prepare_data_seq_cn2(training, task="dst", sequicity=0, batch_size=100, sour
     # load domain-slot pairs from ontology
     ontology = json.load(open(root_path + "/data/crosswoz/ontology.json", 'r'))
     ALL_SLOTS = get_slot_information(ontology)
-    gating_dict = {"ptr":0, "dontcare":1, "none":2}
+    gating_dict = {"ptr":0, "none":1}
     # Vocabulary
     lang, mem_lang = Lang(), Lang()
     lang.index_words(ALL_SLOTS, 'slot')
