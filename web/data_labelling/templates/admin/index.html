@@ -1,0 +1,68 @@
+{% extends 'admin/master.html' %}
+{% block access_control %}
+  <ul class="nav navbar-nav navbar-right">
+    <li>
+      <a href="javascript:void(0)" onclick="javascript:$.post('/services/logout').then(() => window.location.reload())">Logout</a>
+    </li>
+  </ul>
+{% endblock %}
+{% block body %}
+  <div id="app" class="container">
+    <ul style="font-size: 16px; line-height: 2">
+      <li><strong>注册邀请码</strong>: {{ g.invitation_code }}</li>
+      <li><strong>导入任务</strong>: 请将任务配置文件(json 格式)上传至 input 文件夹，导入完成后这些文件将被删除。<a v-if="!running" href="javascript:void(0)" @click="importAll">点此导入</a></li>
+      <li><strong>导出数据</strong>: 所有数据将被导出至 output 文件夹，按照导入顺序作为 ID 每 100 个形成一个文件。<a v-if="!running" href="javascript:void(0)" @click="exportAll">点此导出</a> <a v-if="!running" href="javascript:void(0)" @click="download">下载全部</a></li>
+      <li><strong>删除未标注任务</strong>: <a v-if="!running" href="javascript:void(0)" @click="removeWaitingTasks">点此执行</a> </li>
+      <li v-if="!running" class="text-muted" style="list-style: none">没有正在执行的管理操作</li>
+      <li v-show="running" class="text-warning" style="display: none; list-style: none">正在执行管理操作: <span v-text="running"></span></li>
+    </ul>
+  </div>
+{% endblock %}
+
+{% block tail %}
+  <script src="{{ url_for('static', filename='js/vue.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data () {
+        return {
+          running: null
+        }
+      },
+      methods: {
+        async importAll () {
+          this.running = '导入任务'
+          try {
+            const { data } = await axios.post('/import-all')
+            alert(`成功导入 ${data} 个任务`)
+          } finally {
+            this.running = null
+          }
+        },
+        async exportAll () {
+          this.running = '导出数据'
+          try {
+            const { data } = await axios.post('/export-all')
+            alert(`成功导出 ${data} 个已完成的任务`)
+          } finally {
+            this.running = null
+          }
+        },
+        async download () {
+          await this.exportAll()
+          window.location.href = '/admin/myfileadmin/download/output/all.zip'
+        },
+        async removeWaitingTasks () {
+          this.running = '删除未标注任务'
+          try {
+            await axios.post('/remove-waiting-tasks')
+            alert('执行完成')
+          } finally {
+            this.running = null
+          }
+        }
+      }
+    })
+  </script>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% import 'heading.html' as heading %}
+
+{% block title %} 匹配 {% endblock %}
+
+{% block style %}
+  <style type="text/css">
+    .btn-sq {
+      width: 200px !important;
+      height: 200px !important;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="h-100">
+    {{ heading.render() }}
+    <div class="container">
+      <div class="mx-auto mb-3 mt-3 px-3 py-3 text-center">
+        <h1>寻找匹配</h1>
+        <p class="lead text-muted">
+          选择一个偏好的角色，与其它用户进行匹配。
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-6 text-center">
+          <h3 class="mb-3">系统</h3>
+          <button id="as_system" class="btn btn-sq btn-primary mb-3">
+            <i class="fas fa-desktop fa-8x"></i>
+          </button>
+          <p>
+            当前等待人数：<span id="num_waiting_0"></span>
+          </p>
+        </div>
+        <div class="col-6 text-center">
+          <h3 class="mb-3">用户</h3>
+          <button id="as_client" class="btn btn-sq btn-primary mb-3">
+            <i class="fas fa-user fa-8x"></i>
+          </button>
+          <p>
+            当前等待人数：<span id="num_waiting_1"></span>
+          </p>
+        </div>
+      </div>
+      <div style="display: none" id="div_matching" class="py-3 text-center">
+        <h3 class="mb-3">
+          匹配中<span id="ellipses"></span></h3>
+        <button id="quit_matching" class="btn btn-danger btn-lg">取消</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script>
+    $(document).ready(function () {
+      let role = 0;
+      let no_room = false;
+
+      $('#as_system').click(function () {
+        if (no_room) {
+          alert('没有未完成的任务啦！');
+          return
+        }
+        role = 0;
+        axios.post('enter-queue/0')
+          .then(function (res) {
+            console.log(res);
+          })
+          .catch(function (err) {
+            console.log(err.response)
+          });
+
+        $('#div_matching').show();
+        update();
+      });
+
+      $('#as_client').click(function () {
+        if (no_room) {
+          alert('没有未完成的任务啦！');
+          return
+        }
+        role = 1;
+        axios.post('enter-queue/1')
+          .then(function (res) {
+            console.log(res);
+          })
+          .catch(function (err) {
+            console.log(err.response)
+          });
+
+        $('#div_matching').show();
+        update();
+      });
+
+      $('#quit_matching').click(function () {
+        axios.post('quit-queue')
+          .then(function (res) {
+            console.log(res);
+          })
+          .catch(function (err) {
+            console.log(err.response)
+          });
+
+        $('#div_matching').hide();
+        update();
+      });
+
+      let $num_waiting_0 = $('#num_waiting_0');
+      let $num_waiting_1 = $('#num_waiting_1');
+
+      function update() {
+        axios.get('get-room')
+          .then(function (res) {
+            no_room = false;
+            if (res['status'] === 200) {
+              let data = res['data'];
+              role = data['role'];
+              enter_room(data['room_id']);
+            }
+          })
+          .catch(function (err) {
+            if (err.response && err.response.status === 400) {
+              no_room = true;
+            }
+          });
+
+        axios.get('num-waiting')
+          .then(function (res) {
+            let data = res['data'];
+            $num_waiting_0.text(data[0]);
+            $num_waiting_1.text(data[1]);
+          })
+          .catch(function (err) {
+            console.log(err.response)
+          });
+      }
+
+      let timer_update = setInterval(update, 1000);
+
+      function enter_room(room_id) {
+        clearInterval(timer_update);
+        alert('已经找到匹配，前往房间' + room_id);
+        window.location.href = '/room/' + room_id + '/' + role;
+      }
+
+      update();
+
+      setInterval(function () {
+          let phase = 0;
+          return function () {
+            phase = (phase + 1) % 7;
+            $('#ellipses').text('.'.repeat(phase));
+          }
+        } (),
+        500
+      );
+    });
+  </script>
+{% endblock %}

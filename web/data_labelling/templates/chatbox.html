@@ -1,0 +1,194 @@
+{% macro render(room, role) %}
+  <div id="chatbox" class="card h-100">
+    {% set you = room.user0 if role else room.user1 %}
+    <div class="px-2 py-1" style="background-color: #f3f3f3">
+      <strong style="font-size: 20px">{{ you.username }}</strong>
+    </div>
+    <hr class="my-0">
+    <div id="chatbox-screen" class="card-body">  
+      <chatmsg
+        v-for="{ id, role, content } in messages"
+        :key="id"
+        :content="content"
+        :ourside="role === {{ role }}"
+      />
+    </div>
+    <textarea v-model="draft" @keydown.enter="handleEnter" id="chatbox-sender" class="card-footer" spellcheck="false"></textarea>
+    <div id="chatbox-footer" class="card-footer d-flex">
+      <div v-if="tips" class="text-muted ml-1 my-auto" style="font-size: 14px" v-text="tips"></div>
+      {% if role %}
+      <button v-else v-show="initialized" style="display: none" @click="quit(false)" class="btn btn-sm btn-outline-success px-2">完成对话</button>
+      {% endif %}
+      <button @click="quit(true)" class="btn btn-sm btn-outline-danger px-2 ml-auto">终止对话</button>
+      <button @click="submit" class="btn btn-sm btn-primary px-3 ml-1" disabled :disabled="!canSubmit">发送 <small>(Enter)</small></button>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro script(room, role) %}
+  <script type="text/javascript">
+    const chatbox = new Vue({
+      el: '#chatbox',
+      data () {
+        return {
+          draft: '',
+          locking: false,
+          messages: [],
+          initialized: false
+        }
+      },
+      computed: {
+        isInMyTurn () {
+          const myrole = Number('{{ role }}')
+          return this.lastmsg ? (this.lastmsg.role !== myrole && this.lastmsg.payload) : myrole
+        },
+        canSubmit () {
+          return this.isInMyTurn && !this.locking && !this.isEmpty(this.draft)
+        },
+        tips () {
+          if (this.initialized) {
+            if (this.isInMyTurn) return ''
+            if (this.lastmsg && this.lastmsg.role === Number('{{ role }}') && !this.lastmsg.payload) return '请您尽快提交表单'
+            if (this.lastmsg && this.lastmsg.role !== Number('{{ role }}') && !this.lastmsg.payload) return '正在等待对方提交表单'
+            return '正在等待对方回复'
+          }
+        },
+        lastmsg () {
+          return this.messages.length ? this.messages[this.messages.length - 1] : null
+        }
+      },
+      watch: {
+        lastmsg (nVal, oVal) {
+          if (nVal.role === Number('{{ role }}') && !nVal.payload) vm2.$data.canSubmit = true
+        }
+      },
+      methods: {
+        async submit () {
+          if (!this.canSubmit) return
+          this.locking = true
+          try {
+            await axios.post(`/room/{{ room.id }}/{{ role }}/message/content`, {
+              content: this.draft.replace(/(^\s*)|(\s*$)/g, '')
+            })
+            this.draft = ''
+          } catch (err) {
+            console.error(err)
+          } finally {
+            this.locking = false
+          }
+        },
+        update() {
+          return axios.get('/room/{{ room.id }}/messages').then(response => {
+            this.messages = response.data
+            // console.log(response.data)
+            const el = document.getElementById('chatbox-screen')
+            this.$nextTick(() => {
+              el.scrollTop = el.scrollHeight
+            })
+          })
+        },
+        handleEnter (e) {
+          if (e.shiftKey) {
+            return
+          } else {
+            e.preventDefault()
+            return this.submit()
+          }
+        },
+        quit (force = false) {
+          if (confirm(`您确定要结束对话吗？结束后该任务将被标记为${force ? '未' : ''}完成。`)) {
+            axios.get(`/room/{{ room.id }}/${force ? 'abort' : 'leave'}`).then(() => {
+              window.location.href = '/'
+            }).catch(err => {
+              alert('表单尚未填写完成');
+            })
+          }
+        },
+        isEmpty: str => /^\s*$/.test(str)
+      },
+      mounted () {
+        this.update().then(() => (this.initialized = true))
+        const socket = io.connect(`${window.location.origin}/room/{{ room.id }}`)
+        socket.on('connect', () => {
+          console.log('[WS] connected')
+        })
+        socket.on('disconnect', () => {
+          console.log('[WS] disconnected')
+        })
+        socket.on('update', () => this.update())
+        if (!Number('{{ role }}')) {
+          socket.on('finished', () => {
+            alert('对方已结束对话。')
+            window.location.href = '/'
+          })
+        }
+      },
+      components: {
+        chatmsg: {
+          props: {
+            ourside: {
+              type: Boolean,
+              required: true,
+            },
+            content: {
+              type: String,
+              required: true
+            }
+          },
+          methods: {
+            nl2br: str => str.replace(/(?:\r\n|\r|\n)/g, '<br />')
+          },
+          template: `
+            <div :class="'row justify-content-' + (ourside ? 'end' : 'start')">
+              <div :class="'chatmsg chatmsg-' + (ourside ? 'right' : 'left')" v-html="nl2br(content)"></div>
+            </div>
+          `
+        }
+      }
+    })
+  </script>
+{% endmacro %}
+
+{% macro style() %}
+  <style type="text/css">
+    #chatbox-screen {
+      overflow-y: auto;
+      background-color: #f3f3f3;
+    }
+
+    #chatbox-sender {
+      max-height: 108px;
+      min-height: 108px;
+      padding: 8px 12px;
+      resize: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+      outline: none;
+      overflow-y: auto;
+      background-color: #f3f3f3;
+    }
+
+    #chatbox-footer {
+      border: none;
+      padding: 6px;
+      background-color: #f3f3f3;
+    }
+
+    .chatmsg {
+      max-width: 300px;
+      margin: 6px 15px;
+      padding: 4px 8px;
+      
+      border-radius: 3px;
+    }
+    
+    .chatmsg-left {
+      background-color: #ffffff;
+    }
+
+    .chatmsg-right {
+      background-color: #a2e563;
+    }
+  </style>
+{% endmacro %}

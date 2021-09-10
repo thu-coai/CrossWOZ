@@ -1,0 +1,28 @@
+{% macro render() %}
+  <nav class="navbar sticky-top navbar-expand-sm navbar-dark" style="background-color: #6510ad; user-select: none;">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white">任务导向对话系统</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userinfo">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="userinfo">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mr-3">
+            <a class="nav-link" style="color: rgba(255,255,255,.8)">
+              <strong>
+                {{ g.me.username }}
+              </strong>
+            </a>
+          </li>
+          <li class="nav-item mr-3">
+            <a class="nav-link" href="javascript:void(0)">修改密码</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript:void(0)"
+               onclick="javascript:axios.post('/services/logout').then(() => window.location.reload())">退出登录</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endmacro %}

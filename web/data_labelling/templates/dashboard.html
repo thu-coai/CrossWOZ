@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% import 'heading.html' as heading %}
+
+{% block title %} 控制面板 {% endblock %}
+
+{% block content %}
+  {{ heading.render() }}
+  <div class="container-fluid mt-3 mx-3">
+    <div class="row">
+      <div class="col-12">
+        <a class="btn btn-secondary" href="javascript:void(0)" onclick="axios.post('/room')">
+          手动添加房间
+        </a>
+      </div>
+      <div class="col-12 mt-3">
+        <a class="btn btn-primary" href="/room/1/0">
+          体验系统端
+        </a>
+        <a class="btn btn-primary" href="/room/1/1">
+          体验用户端
+        </a>
+      </div>
+      <div class="col-12 mt-3 text-danger">
+        <strong>注意：</strong>
+        <ul>
+          <li>上述按钮在最终版本中并不存在，仅为展示阶段性 demo 所设。</li>
+          <li>现阶段主要实现了聊天室功能，并未设置额外的检查，下次更新时将完善。</li>
+          <li>为了更好地感受聊天体验，可在多台电脑登录（均用 root / root），分别体验系统端 / 用户端。也可在多个网页中打开。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  <script type="text/javascript">
+
+  </script>
+{% endblock %}

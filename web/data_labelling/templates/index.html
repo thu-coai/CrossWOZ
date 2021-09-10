@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import 'heading.html' as heading %}
+
+{% block title %} 首页 {% endblock %}
+
+{% block content %}
+  <div class="h-100">
+    {{ heading.render() }}
+    <div class="row" style="height: 70%">
+      <div class="col my-auto">
+        <div class="mx-auto" style="max-width: 400px">
+          <h4 class="text-muted">选择您偏好的角色:</h4>
+
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

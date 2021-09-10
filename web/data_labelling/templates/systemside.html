@@ -1,0 +1,374 @@
+{% macro render1(room) %}
+  <div id="render1" class="card h-100" style="overflow: auto">
+    <table v-show="details" class="table table-bordered" style="display: none; table-layout: fixed; word-break: break-all; font-size: 14px; margin-bottom: 0">
+      <thead>
+        <tr class="text-center">
+          <th width="25%">槽</th>
+          <th width="75%">值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(value, key) in details" :key="key" class="text-center">
+          <td v-text="key"></td>
+          <td v-text="prettify(key, value)" :title="fulltext(value)"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div v-if="!details" class="d-flex h-100">
+      <div class="my-auto mx-auto text-muted" v-text="'请先选中一条记录'"></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro render2(room) %}
+  <div id="render2" class="card h-100" style="overflow: auto">
+    <div class="d-flex px-1 py-1" style="background-color: #fff; min-height: 40px;">
+      <button @click="submitForm" class="btn btn-sm btn-danger px-3 ml-auto" disabled :disabled="!canSubmit">提交表单</button>
+    </div>
+    <div style="min-height: 30%; max-height: 30%; overflow: auto; border-bottom: 1px solid #dee2e6;">
+      <table v-show="result.length" class="table table-striped table-bordered" style="display: none; table-layout: fixed; word-break: break-all; font-size: 14px; margin-bottom: 0">
+        <thead>
+          <tr>
+            <th class="text-center" width="10%"></th>
+            <th width="90%">名称</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in result" :key="index">
+            <td class="text-center"><input v-model="item[2]" type="checkbox"></td>
+            <td><a href="javascript:void(0)" @click="showResult(item[1])" v-text="item[0]"></a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div v-if="!result.length" class="d-flex h-100">
+        <div class="my-auto mx-auto text-muted" v-text="'暂无记录'"></div>
+      </div>
+    </div>
+    <ul class="nav nav-tabs nav-fill pt-2">
+      <li v-for="(_, field) in query" :key="field" class="nav-item">
+        <a @click="activeField = field" :class="'nav-link' + (activeField === field ? ' active' : '')" href="javascript:void(0)" v-text="field"></a>
+      </li>
+    </ul>
+    <div v-show="initialized" class="card-body" style="overflow: auto; display: none">
+      <div @keyup.enter="submit">
+        <div v-for="(item, name) in query[activeField]" :key="activeField + name" class="form-group row">
+          <label class="col-3 col-form-label col-form-label-sm" v-text="name"></label>
+          <template v-if="item.type === 'between'">
+            <div class="col-4">
+              <input v-model="item.params[0]" type="number" class="form-control form-control-sm">
+            </div>
+            <div class="ml-2">~</div>
+            <div class="col-4 ml-auto">
+              <input v-model="item.params[1]" type="number" class="form-control form-control-sm">
+            </div>
+          </template>
+          <div v-else class="col-9">
+            <input v-model="item.params" class="form-control form-control-sm">
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" @click="submit" :disabled="locking">查询</button>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro script(room) %}
+  <script type="text/javascript">
+    const vm1 = new Vue({
+      el: '#render1',
+      data () {
+        return {
+          details: null
+        }
+      },
+      methods: {
+        update (details) {
+          this.details = details
+        },
+        prettify (key, value) {
+          if (value === null) return '无'
+          if (value instanceof Array) {
+            if (!value.length) return '无'
+            disp = []
+            let length = value.length
+            if (/^周边/.test(key)) {
+              length = Math.min(length, 5)
+            }
+            for (let i = 0; i < length; ++i) {
+              disp.push(value[i])
+            }
+            return disp.join(', ') + (value.length !== length ? ' ...' : '')
+          }
+          return value
+        },
+        fulltext (value) {
+          if (value === null) return
+          if (value instanceof Array) {
+            disp = []
+            for (let i = 0; i < value.length; ++i) {
+              disp.push(value[i])
+            }
+            return disp.join(', ')
+          }
+          return value
+        }
+      }
+    })
+
+    const vm2 = new Vue({
+      el: '#render2',
+      data () {
+        return {
+          canSubmit: false,
+          query: {
+            '景点': {
+              '名称': { params: null },
+              '门票': { type: 'between', params: [null, null] },
+              '游玩时间': { params: null },
+              '评分': { type: 'between', params: [null, null] },
+              '周边景点': { type: 'in', params: null },
+              '周边餐馆': { type: 'in', params: null },
+              '周边酒店': { type: 'in', params: null },
+            },
+            '餐馆': {
+              '名称': { params: null },
+              '推荐菜': { type: 'multiple_in', params: null },
+              '人均消费': { type: 'between', params: [null, null] },
+              '评分': { type: 'between', params: [null, null] },
+              '周边景点': { type: 'in', params: null },
+              '周边餐馆': { type: 'in', params: null },
+              '周边酒店': { type: 'in', params: null }
+            },
+            '酒店': {
+              '名称': { params: null },
+              '酒店类型': { params: null },
+              '酒店设施': { type: 'multiple_in', params: null },
+              '价格': { type: 'between', params: [null, null] },
+              '评分': { type: 'between', params: [null, null] },
+              '周边景点': { type: 'in', params: null },
+              '周边餐馆': { type: 'in', params: null },
+              '周边酒店': { type: 'in', params: null }
+            },
+            '地铁': {
+              '起点': { params: null },
+              '终点': { params: null },
+            },
+            '出租': {
+              '起点': { params: null },
+              '终点': { params: null },
+            }
+          },
+          activeField: '景点',
+          result: [],
+          history: [],
+          database: {},
+          locking: false,
+          initialized: false
+        }
+      },
+      methods: {
+        showResult (details) {
+          vm1.update(details)
+        },
+        syncLastResult () {
+          const p = this.history.length - 1
+          if (p < 0) return
+          // console.log(this.history)
+          // console.log(p, this.history[p])
+          delete this.history[p].result
+          this.history[p].selectedResults = this.result.filter(item => item[2]).map(item => item[0])
+        },
+        async ask (payload) {
+          const db = this.database[payload.field]
+          const contains = (arr, s) => {
+            return !arr.filter(item => !(item.indexOf(s) < 0)).length
+          }
+          if (payload.field === '地铁' || payload.field === '出租') {
+            let s, e, q
+            q = payload.query['起点']
+            if (q.params) s = q.params
+            else q.params = null
+            q = payload.query['终点']
+            if (q.params) e = q.params
+            else q.params = null
+            if (!s || !e) {
+              payload.result = []
+              return payload
+            }
+            if (payload.field === '出租') {
+              payload.result = [
+                [`出租 (${s} - ${e})`, {
+                  '领域': '出租',
+                  '车型': '#CX',
+                  '车牌': '#CP'
+                }, false]
+              ]
+              return payload
+            } else {
+              payload.result = db.map(item => {
+                if (item[0].indexOf(s) >= 0) {
+                  return [`(起点) ${item[0]} `, item[1], false]
+                }
+              }).filter(Boolean).concat(db.map(item => {
+                if (item[0].indexOf(e) >= 0) {
+                  return [`(终点) ${item[0]}`, item[1], false]
+                }
+              }).filter(Boolean))
+              return payload
+            }
+          }
+          if (!db) return []
+          payload.result = db.filter(item => {
+            const details = item[1]
+            for (let key in payload.query) {
+              const val = details[key]
+              const absence = val === null
+              const options = payload.query[key]
+              if (options.type === 'between') {
+                let L = -Infinity
+                let R =  Infinity
+                if (options.params[0] || (typeof options.params[0] === 'number')) {
+                  options.params[0] = Number(options.params[0])
+                  L = options.params[0]
+                  if (absence) return false
+                } else {
+                  options.params[0] = null
+                }
+                if (options.params[1] || (typeof options.params[1] === 'number')) {
+                  options.params[1] = Number(options.params[1])
+                  R = options.params[1]
+                  if (absence) return false
+                } else {
+                  options.params[1] = null
+                }
+                if (L > val || val > R) {
+                  return false
+                }
+              } else if (options.type === 'in') {
+                if (options.params) {
+                  if (absence) return false
+                  if (contains(val, options.params)) {
+                    return false
+                  }
+                } else {
+                  options.params = null
+                }
+              } else if (options.type === 'multiple_in') {
+                if (options.params) {
+                  if (absence) return false
+                  if (!(options.params instanceof Array)) {
+                    options.params = options.params.split(' ').filter(s => !!s)
+                  }
+                  if (options.params.filter(s => contains(val, s)).length) {
+                    return false
+                  }
+                } else {
+                  options.params = null
+                }
+              } else {
+                if (options.params) {
+                  if (absence) return false
+                  if (val.indexOf(options.params) < 0) {
+                    return false
+                  }
+                } else {
+                  options.params = null
+                }
+              }
+            }
+            return payload
+          }).map(item => item.concat(false))
+        },
+        async submit () {
+          if (this.locking) return true
+          this.locking = true
+          this.syncLastResult()
+          let payload = JSON.parse(JSON.stringify({
+            field: this.activeField,
+            query: this.query[this.activeField],
+            timestamp: Date.now()
+          }))
+          try {
+            await this.ask(payload)
+            this.result = payload.result
+            this.history.push(payload)
+          } catch (err) {
+            console.error(err)
+          } finally {
+            this.locking = false
+          }
+        },
+        async loaddb () {
+          const f = (path, name) => {
+            return axios.get(path).then(response => {
+              this.database[name] = response.data
+            })
+          }
+          return Promise.all([
+            f('/static/data/attraction_db.json', '景点'),
+            f('/static/data/restaurant_db.json', '餐馆'),
+            f('/static/data/hotel_db.json', '酒店'),
+            f('/static/data/metro_db.json', '地铁')
+          ])
+        },
+        async submitForm () {
+          if (!this.canSubmit) return
+          if (!this.result.filter(item => item[2]).length) {
+            if (!confirm('未选中任何内容，确定要发送吗？')) return
+          }
+          if (!this.history.length) {
+            this.history.push(JSON.parse(JSON.stringify({
+              field: this.activeField,
+              query: this.query[this.activeField],
+              timestamp: 0
+            })))
+          }
+          this.syncLastResult()
+          try {
+            // console.log(JSON.parse(JSON.stringify(this.history)))
+            await axios.post(`/room/{{ room.id }}/0/message/payload`, {
+              payload: this.history
+            })
+            if (this.history.length) {
+              this.history = [this.history.pop()]
+            }
+            this.result.map(item => (Vue.set(item, 2, false)))
+            this.canSubmit = false
+          } catch (err) {
+            console.error(err)
+          }
+        }
+      },
+      mounted () {
+        if (window.localStorage['systemsideData{{ room.id }}']) {
+          const data = JSON.parse(window.localStorage['systemsideData{{ room.id }}'])
+          this.activeField = data.activeField
+          this.query = data.query
+          this.result = data.result
+          this.history = data.history
+        }
+        this.initialized = true
+        this.loaddb()
+        setInterval(() => {
+          // console.log(this.history.length)
+          window.localStorage['systemsideData{{ room.id }}'] = JSON.stringify({
+            activeField: this.activeField,
+            query: this.query,
+            result: this.result,
+            history: (this.history.length ? [this.history[this.history.length - 1]] : [])
+          })
+        }, 500)
+      }
+    })
+  </script>
+{% endmacro %}
+
+{% macro style() %}
+  <style type="text/css">
+    .table td, .table th {
+      padding: 4px 12px;
+      outline: none;
+      vertical-align: middle;
+    }
+  </style>
+{% endmacro %}

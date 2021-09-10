@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% import 'heading.html' as heading %}
+{% import 'chatbox.html' as chatbox %}
+{% import 'systemside.html' as systemside %}
+{% import 'clientside.html' as clientside %}
+{% set ourside = clientside if role else systemside %}
+
+{% block title %} 任务 - {{ '用户' if role else '系统' }}端 {% endblock %}
+
+{% block content %}
+  <div style="height: 84%">
+    {{ heading.render() }}
+    <div class="container-fluid h-100">
+      <div class="row px-3 h-100">
+        <div class="col-12 col-lg-4 my-3 px-2 h-100">
+          {{ ourside.render1(room) }}
+        </div>
+        <div class="col-12 col-lg-4 my-3 px-2 h-100">
+          {{ ourside.render2(room) }}
+        </div>
+        <div class="col-12 col-lg-4 my-3 px-2 h-100">
+          {{ chatbox.render(room, role) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+  {{ ourside.script(room) }}
+  {{ chatbox.script(room, role) }}
+{% endblock %}
+
+{% block style %}
+  {{ ourside.style() }}
+  {{ chatbox.style() }}
+{% endblock %}
