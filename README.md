@@ -6,6 +6,10 @@ Refer to our paper for more details:  [CrossWOZ: A Large-Scale Chinese Cross-Dom
 
 If you have any question, feel free to open an issue.
 
+## Annotation Platform
+
+We also release our annotation platform (Sep 10, 2021), supporting two annotators converse synchronously and make annotations online. Please refer to the `web` directory.
+
 ## Data
 
 A piece of dialogue: (Names of hotels are replaced by A,B,C for simplicity.)
