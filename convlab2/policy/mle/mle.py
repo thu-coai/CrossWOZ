@@ -48,5 +48,5 @@ class MLEAbstract(Policy):
 
         policy_mdl = os.path.join(os.path.dirname(os.path.abspath(__file__)), filename + '_mle.pol.mdl')
         if os.path.exists(policy_mdl):
-            self.policy.load_state_dict(torch.load(policy_mdl))
+            self.policy.load_state_dict(torch.load(policy_mdl, map_location=DEVICE))
             print('<<dialog policy>> loaded checkpoint from file: {}'.format(policy_mdl))

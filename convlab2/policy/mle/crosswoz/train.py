@@ -157,4 +157,4 @@ if __name__ == '__main__':
     for e in range(cfg['epoch']):
         agent.imitating(e)
         best = agent.imit_test(e, best)
-    # agent.test() # 5731 1483 1880 0.7731534569983137
+    agent.test() # 5731 1483 1880 0.7731534569983137
