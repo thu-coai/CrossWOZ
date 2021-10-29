@@ -52,6 +52,33 @@ Statistics for dialogues of different goal types in the training set:
 
 We also provide database in `data/crosswoz/database`.
 
+### Data format
+
+- task_id: dialog
+  - sys-usr: system annotator ID and user annotation ID.
+  - goal: list of tuples, includes:
+    - sub-goal id
+    - domain name
+    - slot name
+    - constraint if filled, else requirement
+    - whether be mentioned in previous turns
+  - message: dialog turns. Each turn contains
+    - content: utterance
+    - role: user or system side
+    - dialog_act: list of dialog act tuples, includes:
+      - domain
+      - intent
+      - slot
+      - value
+    - user_state: same format as "goal", can be viewed as dynamic goal
+    - sys_state_init: the **first** db query emitted, records user constraints faithfully. If the system find no result that matches, he/she may relax the constraints manually and search db multiple times.
+      - domain: slot-value pairs
+      - selectedResults: db search result that would be used in this turn
+    - sys_state: the **final** db query emitted, records the db used by the system in this turn. Note that this may not satisfy all user constraints.
+  - final_goal: user state/goal at the end of dialog
+  - task description: natural language description of the user goal.
+  - type: dialog type.
+
 ## Code
 
 please install via:
