@@ -441,5 +441,5 @@ def example():
 
 
 if __name__ == '__main__':
-    nlg = TemplateNLG(is_user=False)
-    print(nlg.generate([['Inform', '地铁', '目的地', '云峰山'], ['Request', '地铁', '出发地', '']]))
+    nlg = TemplateNLG(is_user=True)
+    print(nlg.generate([["Inform", "餐馆", "人均消费", "100-150元"], ["Request", "餐馆", "名称", ""]]))
