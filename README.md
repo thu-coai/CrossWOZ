@@ -66,8 +66,8 @@ We also provide database in `data/crosswoz/database`.
     - content: utterance
     - role: user or system side
     - dialog_act: list of dialog act tuples, includes:
-      - domain
       - intent
+      - domain 
       - slot
       - value
     - user_state: same format as "goal", can be viewed as dynamic goal
