@@ -13,7 +13,7 @@ from convlab2.nlu.jointBERT.crosswoz.preprocess import preprocess
 
 class BERTNLU(NLU):
     def __init__(self, mode='all', config_file='crosswoz_all_context.json',
-                 model_file='https://convlab.blob.core.windows.net/convlab-2/bert_crosswoz_all_context.zip'):
+                 model_file='https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/bert_crosswoz_all_context.zip'):
         assert mode == 'usr' or mode == 'sys' or mode == 'all'
         config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'configs/{}'.format(config_file))
         config = json.load(open(config_file))
@@ -76,5 +76,5 @@ class BERTNLU(NLU):
 
 if __name__ == '__main__':
     nlu = BERTNLU(mode='all', config_file='crosswoz_all_context.json',
-                  model_file='https://convlab.blob.core.windows.net/convlab-2/bert_crosswoz_all_context.zip')
+                  model_file='https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/bert_crosswoz_all_context.zip')
     print(nlu.predict("北京布提克精品酒店酒店是什么类型，有健身房吗？", ['你好，给我推荐一个评分是5分，价格在100-200元的酒店。', '推荐您去北京布提克精品酒店。']))

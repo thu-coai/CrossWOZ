@@ -90,15 +90,15 @@ pip install -e .
 Code:
 
 - BERTNLU: `convlab2/nlu/jointBERT/crosswoz`
-  - Trained model: https://convlab.blob.core.windows.net/convlab-2/bert_crosswoz_all_context.zip
+  - Trained model: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/bert_crosswoz_all_context.zip
 - RuleDST: `convlab2/dst/rule/crosswoz`
 - TRADE: `convlab2/dst/trade/crosswoz`
-  - Trained model: https://convlab.blob.core.windows.net/convlab-2/trade_crosswoz_model.zip
-  - Preprocessed data: https://convlab.blob.core.windows.net/convlab-2/trade_crosswoz_data.zip
+  - Trained model: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/trade_crosswoz_model.zip
+  - Preprocessed data: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/trade_crosswoz_data.zip
 - SL policy: `convlab2/policy/mle/crosswoz`
-  - Trained model: https://convlab.blob.core.windows.net/convlab-2/mle_policy_crosswoz.zip
+  - Trained model: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/mle_policy_crosswoz.zip
 - SCLSTM: `convlab2/nlg/sclstm/crosswoz`
-  - Trained model: https://convlab.blob.core.windows.net/convlab-2/nlg_sclstm_crosswoz.zip
+  - Trained model: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/nlg_sclstm_crosswoz.zip
 - TemplateNLG: `convlab2/nlg/template/crosswoz`
 - User simulator: `convlab2/policy/rule/crosswoz`
 - Evaluate with user simulator: `convlab2/policy/mle/crosswoz/evaluate.py`
