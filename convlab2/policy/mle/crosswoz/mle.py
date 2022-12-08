@@ -18,7 +18,7 @@ class MLE(MLEAbstract):
 
     def __init__(self,
                  archive_file=DEFAULT_ARCHIVE_FILE,
-                 model_file='https://convlab.blob.core.windows.net/convlab-2/mle_policy_crosswoz.zip'):
+                 model_file='https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/mle_policy_crosswoz.zip'):
         root_dir = os.path.dirname(
             os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 

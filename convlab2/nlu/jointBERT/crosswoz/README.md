@@ -56,9 +56,9 @@ We have trained two models: one use context information (last 3 utterances)(`con
 
 Models can be download form:
 
-Without context: https://convlab.blob.core.windows.net/convlab-2/bert_crosswoz_all.zip
+Without context: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/bert_crosswoz_all.zip
 
-With context: https://convlab.blob.core.windows.net/convlab-2/bert_crosswoz_all_context.zip
+With context: https://huggingface.co/ConvLab/ConvLab-2_models/resolve/main/bert_crosswoz_all_context.zip
 
 
 
