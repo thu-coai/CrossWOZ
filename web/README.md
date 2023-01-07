@@ -47,7 +47,7 @@ You can use exactly same steps as development startup.
 
 管理员可以在后台导入预先定义的任务，导出对话数据。
 
-导入任务的步骤是：在 Result Files 选项卡下，进入 inputs 目录，上传任务定义文件 tasks.json，再回到管理首页，点导入按钮。导入成功后，系统会告知导入成功的任务数量。此时也可以到 Task 选项卡查看详情。
+导入任务的步骤是：在 Result Files 选项卡下，进入 inputs 目录，上传任务定义文件 [tasks.json](example_goal.json)，再回到管理首页，点导入按钮。导入成功后，系统会告知导入成功的任务数量。此时也可以到 Task 选项卡查看详情。
 
 导出数据直接在管理首页点下载全部即可。
 
