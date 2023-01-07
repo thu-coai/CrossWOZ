@@ -3,11 +3,9 @@ flask
 flask-socketio
 flask-admin
 flask-login
-redis
 python-redis-lock
 bcrypt
 peewee
 wtf-peewee
 eventlet
 redis
-python-redis-lock
