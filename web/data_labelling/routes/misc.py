@@ -39,7 +39,7 @@ def import_all():
     count = 0
 
     def import_one(path):
-        with open(path, 'r') as f:
+        with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         def f(options):
             items = []
@@ -64,8 +64,8 @@ def import_all():
         fullpath = os.path.join(basepath, filename)
         try:
             count += import_one(fullpath)
-        except:
-            pass
+        except Exception as e:
+            print(repr(e))
         try:
             os.remove(fullpath)
         except:
